@@ -1,0 +1,16 @@
+# Think about timeouts
+
+# Moves tests into a "test" folder and user assert. i.e. make them real test cases.
+
+# Change signature for get/post/etc... to be
+get(params, options, cb)
+
+
+# Support json params flag where it passes query string as ?name="abdul" if it was set. This will make ObjectServer
+be able to parse params as a json without the need for type conversion
+
+# Kill apiKey shit. We will bring it back with an authenticator
+
+# Allow global options level:
+   - Timeout. default 30 secs
+
