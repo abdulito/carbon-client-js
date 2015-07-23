@@ -1,2 +1,2 @@
-datanode-client
+Carbon Client
 ===============
