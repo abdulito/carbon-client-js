@@ -1,0 +1,5 @@
+# vim
+*.sw[po]
+
+# node
+node_modules/*
