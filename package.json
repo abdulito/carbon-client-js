@@ -1,6 +1,6 @@
 {
   "name": "carbon-client",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "carbon client",
   "contributors": [
     "Will Shulman <will@objectlabs.com>",
@@ -18,8 +18,8 @@
   "engines": { "node": ">=0.12.0" },
   "dependencies": {
     "request" : ">= 0.4.12",
-    "ejson": "git+ssh://git@github.com:carbon-io/ejson.git",
-    "http-errors": "git+ssh://git@github.com:carbon-io/http-errors.git#v0.0.3",
+    "ejson": "carbon-io/ejson.git",
+    "http-errors": "carbon-io/http-errors.git#v0.0.3",
     "lodash": "^4.0.0"
   },
   "preferGlobal": false
