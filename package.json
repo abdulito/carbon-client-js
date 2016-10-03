@@ -20,7 +20,7 @@
     "request" : ">= 0.4.12",
     "ejson": "carbon-io/ejson.git",
     "http-errors": "carbon-io/http-errors.git#v0.0.3",
-    "lodash": "^4.0.0"
+    "lodash": "4.16.2"
   },
   "preferGlobal": false
 }
