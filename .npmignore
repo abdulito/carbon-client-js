@@ -2,7 +2,14 @@
 *.sw[po]
 
 # node
-node_modules/*
+node_modules
+node4_modules
+node6_modules
 
 # docs
 docs/*
+
+# env
+.python-version
+.env
+env
