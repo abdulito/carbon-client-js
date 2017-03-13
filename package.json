@@ -15,11 +15,17 @@
     "lib" : "./lib",
     "bin" : "./bin"
   },
-  "engines": { "node": ">=0.12.0" },
+  "engines": { "node": ">=4.0.0" },
   "dependencies": {
     "request" : ">= 0.4.12",
-    "@carbon-io/carbon-core": "0.4.6",
-    "lodash": "4.16.2"
+    "@carbon-io/carbon-core": "0.4.x",
+    "lodash": "4.16.2",
+    "nock": "8.2.0"
   },
+
+  "scripts": {
+    "test": "node test"
+  },
+
   "preferGlobal": false
 }
