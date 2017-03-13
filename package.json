@@ -1,6 +1,6 @@
 {
   "name": "@carbon-io/carbon-client",
-  "version": "0.1.8",
+  "version": "0.3.1",
   "description": "carbon client",
   "contributors": [
     "Will Shulman <will@objectlabs.com>",
