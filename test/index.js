@@ -1,6 +1,6 @@
 var o   = require('@carbon-io/atom').o(module).main
 var _o   = require('@carbon-io/bond')._o(module)
-var testtube = require('@carbon-io/testtube')
+var testtube = require('@carbon-io/test-tube')
 
 /***********************************************************************************************************************
  * All tests
