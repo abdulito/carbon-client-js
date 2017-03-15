@@ -1,10 +1,9 @@
 var testClient = require('./setup')
 
-var carbon_core = require('@carbon-io/carbon-core')
+var o   = require('@carbon-io/atom').o(module).main
+var _o   = require('@carbon-io/bond')._o(module)
+var testtube = require('@carbon-io/testtube')
 
-var o   = carbon_core.atom.o(module).main
-var _o   = carbon_core.bond._o(module)
-var testtube = carbon_core.testtube
 var assert = require('assert')
 
 /***********************************************************************************************************************

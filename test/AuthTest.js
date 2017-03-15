@@ -1,10 +1,10 @@
 var testUrl = require('./setup').url
 var RestClient = require('../lib/RestClient')
 
-var carbon_core = require('@carbon-io/carbon-core')
-var o   = carbon_core.atom.o(module).main
-var _o   = carbon_core.bond._o(module)
-var testtube = carbon_core.testtube
+var o   = require('@carbon-io/atom').o(module).main
+var _o   = require('@carbon-io/bond')._o(module)
+var testtube = require('@carbon-io/testtube')
+
 var assert = require('assert')
 var nock = require('nock')
 
