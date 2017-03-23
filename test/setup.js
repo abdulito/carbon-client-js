@@ -108,9 +108,14 @@ nock(testUrl).get('/users').query(true)
  * users.insert(): POST /users
  */
 nock(testUrl).post('/users')
-.reply(200, function(uri, requestBody){
-  requestBody["_id"] = "123"
-  return requestBody
+  .reply(
+    201, 
+    function(uri, requestBody){
+      requestBody["_id"] = "123"
+      return requestBody
+    }, {
+      'location': '/users/123/',
+      'carbonio-id': '123'
   }).persist();
 
 /**********************************************************************
@@ -148,8 +153,14 @@ nock(testUrl).get('/users/123')
  * users.saveObject("123"): PUT /users/123
  */
 nock(testUrl).put('/users/123')
-  .reply(200, {
-    ok: true
+  .reply(
+    201, 
+    function(uri, requestBody){
+      requestBody["_id"] = "123"
+      return requestBody
+    }, {
+      'location': '/users/123/',
+      'carbonio-id': '123'
   }).persist();
 
 /**********************************************************************
