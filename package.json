@@ -19,6 +19,7 @@
   "devDependencies": {
     "@carbon-io/atom": "0.5.x", 
     "@carbon-io/bond": "0.4.x", 
+    "@carbon-io/fibers": "0.5.x",
     "@carbon-io/test-tube": "0.4.x"
   },
   "dependencies": {
