@@ -17,14 +17,14 @@
   },
   "engines": { "node": ">=4.0.0" },
   "devDependencies": {
-    "@carbon-io/atom": "0.5.x", 
-    "@carbon-io/bond": "0.4.x", 
-    "@carbon-io/fibers": "0.5.x",
-    "@carbon-io/test-tube": "0.4.x"
+    "@carbon-io/atom": "0.6.x",
+    "@carbon-io/bond": "0.5.x",
+    "@carbon-io/fibers": "0.6.x",
+    "@carbon-io/test-tube": "0.5.x"
   },
   "dependencies": {
     "request" : ">= 0.4.12",
-    "@carbon-io/ejson": "0.3.x", 
+    "@carbon-io/ejson": "0.4.x",
     "@carbon-io/http-errors": "0.1.x",
     "lodash": "4.16.x",
     "nock": "8.2.0"
