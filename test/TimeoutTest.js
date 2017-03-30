@@ -1,66 +1,101 @@
-var testUrl = require('./setup').url
-var RestClient = require('../lib/RestClient')
+debugger
+var assert = require('assert')
+var nock = require('nock')
+var _ = require('lodash')
 
-var o   = require('@carbon-io/atom').o(module).main
+var __ = require('@carbon-io/fibers').__(module)
+var o   = require('@carbon-io/atom').o(module)
 var _o   = require('@carbon-io/bond')._o(module)
 var testtube = require('@carbon-io/test-tube')
 
-var assert = require('assert')
-var nock = require('nock')
+var RestClient = require('../lib/RestClient')
 
+__.main(function() {
+  module.exports = o.main({
+    /**********************************************************************
+     * _type
+     */
+    _type: testtube.Test,
 
+    /**********************************************************************
+     * name
+     */
+    name: "SlowEndpointTests",
 
-module.exports = o({
+    /**********************************************************************
+     * description
+     */
+    description: "test requests against an endpoint that takes 3 seconds to return",
 
-  /*********************************************************************************************************************
-   * _type
-   */
-  _type: testtube.Test,
+    /**********************************************************************
+     * setup
+     */
+    setup: function(ctx) {
+      var testUrl = require('./setup').url
 
-  /*********************************************************************************************************************
-   * name
-   */
-  name: "TimeoutTest",
+      // create the nock timeout endpoint. delay response for 5 seconds
+      nock(testUrl).get('/timeout').delay(5000).reply(200, {
+        "ok": 1
+      }).persist()
 
+      // create the client with a 3 second timeout
+      ctx.global.client = new RestClient(testUrl, {
+        timeout: 3000
+      })
 
-  /*********************************************************************************************************************
-   *
-   */
-  doTest: function () {
+    },
 
-    // create the nock timeout endpoint. delay response for 5 seconds
-    nock(testUrl).get('/timeout').delay(5000).reply(200, {
-      "ok": 1
-    }).persist();
+    /**********************************************************************
+     * teardown
+     */
+    teardown: function(ctx) {
+      delete ctx.global.client
+    },
 
-    // create the client with a 3 second timeout
-    var client = new RestClient(testUrl, {
-      timeout: 3000
-    });
-
-    console.log("testing /timeout with a 3 second timeout")
-
-    var then = Date.now()
-    client.getEndpoint("timeout").get(function(e, res) {
-      if (Date.now() - then >= 5000) {
-        console.error('nock is broken, see ' +
-          'https://github.com/node-nock/nock/issues/754 and ' +
-          'https://github.com/node-nock/nock/pull/802')
-        console.error('SKIPPING!!!')
-        return
-      }
-      assert(e != null)
-      assert(e.message === "ETIMEDOUT")
-      console.log("3 second timeout test passed!. Got the ETIMEDOUT error")
-    })
-
-    console.log("testing /timeout with a 6 second timeout")
-    client.getEndpoint("timeout").get({timeout: 6000}, function(e, res) {
-      assert(e == null)
-      assert(res.body.ok == 1)
-      console.log("6 second timeout test passed. Response body: ")
-      console.log(res.body)
-    })
-
-  }
+    /**********************************************************************
+     *
+     */
+    tests: [
+      o({
+        _type: testtube.Test,
+        name: 'TimeoutTest',
+        description: 'testing /timeout with a 3 second timeout',
+        doTest: function(ctx, done) {
+          var then = Date.now()
+          ctx.global.client.getEndpoint("timeout").get(function(e, res) {
+            var err = undefined
+            try {
+              if (Date.now() - then >= 5000) {
+                throw new testtube.errors.SkipTestError(
+                  'nock is broken, see https://github.com/node-nock/nock/issues/754 ' +
+                  'and https://github.com/node-nock/nock/pull/802')
+              }
+              assert(!_.isNull(e))
+              assert.equal(e.message, "ETIMEDOUT")
+            } catch (e) {
+              err = e
+            }
+            done(err)
+          })
+        }
+      }),
+      o({
+        _type: testtube.Test,
+        name: 'NoTimeoutTest',
+        description: 'testing /timeout with a 6 second timeout',
+        doTest: function(ctx, done) {
+          ctx.global.client.getEndpoint("timeout").get({timeout: 6000}, function(e, res) {
+            var err = undefined
+            try {
+              assert(_.isNull(e))
+              assert.equal(res.body.ok, 1)
+            } catch (e) {
+              err = e
+            }
+            done(err)
+          })
+        }
+      }),
+    ]
+  })
 })
