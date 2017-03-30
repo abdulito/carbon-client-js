@@ -1,6 +1,6 @@
 {
   "name": "@carbon-io/carbon-client",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "description": "carbon client",
   "contributors": [
     "Will Shulman <will@objectlabs.com>",
@@ -26,7 +26,7 @@
     "request" : ">= 0.4.12",
     "@carbon-io/ejson": "0.3.x", 
     "@carbon-io/http-errors": "0.1.x",
-    "lodash": "4.16.2",
+    "lodash": "4.16.x",
     "nock": "8.2.0"
   },
 
