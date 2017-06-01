@@ -1,3 +1,5 @@
+.. _carbon-client:
+
 =============
 Carbon Client
 =============
