@@ -1,4 +1,4 @@
-.. _carbon-client:
+.. _carbon-client-js:
 
 =============
 Carbon Client
