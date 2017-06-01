@@ -1,4 +1,3 @@
-debugger
 var assert = require('assert')
 var nock = require('nock')
 var _ = require('lodash')

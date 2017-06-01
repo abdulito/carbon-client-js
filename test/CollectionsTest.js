@@ -28,6 +28,8 @@ __(function() {
      */
     setup: function(ctx) {
       ctx.global.usersCollection = require('./setup').getCollection('users')
+      ctx.global.userLiteCollection = require('./setup').getCollection('userlite')
+      ctx.global.userMungeCollection = require('./setup').getCollection('usermunge')
     },
 
     /****************************************************************************
@@ -59,7 +61,7 @@ __(function() {
             }
             return done(e)
           })
-        }    
+        }
       }),
       o({
         _type: testtube.Test,
@@ -79,7 +81,7 @@ __(function() {
               }
               return done(err)
             })
-        }    
+        }
       }),
       o({
         _type: testtube.Test,
@@ -99,7 +101,7 @@ __(function() {
               }
               return done(err)
             })
-        }    
+        }
       }),
       o({
         _type: testtube.Test,
@@ -120,7 +122,7 @@ __(function() {
             }
             return done(err)
           })
-        }    
+        }
       }),
       o({
         _type: testtube.Test,
@@ -142,7 +144,7 @@ __(function() {
             }
             return done(err)
           })
-        }    
+        }
       }),
       o({
         _type: testtube.Test,
@@ -155,7 +157,7 @@ __(function() {
               assert(_.isNull(e))
               if(!_.isNull(item)) {
                 assert(item.username === 'abdul' || item.username === 'bob')
-              } 
+              }
             } catch (e) {
               err = e
             }
@@ -163,7 +165,7 @@ __(function() {
               return done(err)
             }
           })
-        }    
+        }
       }),
       o({
         _type: testtube.Test,
@@ -184,7 +186,7 @@ __(function() {
               return done(err)
             }
           )
-        }    
+        }
       }),
       o({
         _type: testtube.Test,
@@ -205,7 +207,7 @@ __(function() {
               return done(err)
             }
           )
-        }    
+        }
       }),
       o({
         _type: testtube.Test,
@@ -224,7 +226,7 @@ __(function() {
               return done(err)
             }
           )
-        }    
+        }
       }),
       o({
         _type: testtube.Test,
@@ -248,7 +250,7 @@ __(function() {
               }
               return done(err)
             })
-        }    
+        }
       }),
       o({
         _type: testtube.Test,
@@ -270,7 +272,7 @@ __(function() {
               return done(err)
             }
           )
-        }    
+        }
       }),
       o({
         _type: testtube.Test,
@@ -293,8 +295,55 @@ __(function() {
               return done(err)
             }
           )
-        }    
-      })
+        }
+      }),
+      o({
+        _type: testtube.Test,
+        name: 'InsertLiteTest',
+        description: 'testing users collection async insert with no body',
+        doTest: function(ctx, done) {
+          ctx.global.userLiteCollection.insert({
+              username: 'bill'
+            }, function(e, result) {
+              var err = undefined
+              try {
+                assert(_.isNull(e))
+                assert(!_.isNull(result))
+                assert(!_.isNull(result['_id']))
+                assert.equal(result['_id'], '123')
+                assert.equal(result['username'], 'bill')
+              } catch (e) {
+                err = e
+              }
+              return done(err)
+            }
+          )
+        }
+      }),
+      o({
+        _type: testtube.Test,
+        name: 'InsertMungeTest',
+        description: 'testing users collection async insert with munged body',
+        doTest: function(ctx, done) {
+          ctx.global.userMungeCollection.insert({
+              username: 'bill'
+            }, function(e, result) {
+              var err = undefined
+              try {
+                assert(_.isNull(e))
+                assert(!_.isNull(result))
+                assert(!_.isNull(result['_id']))
+                assert.equal(result['_id'], '123')
+                assert.equal(result['foo'], 'foo')
+                assert.equal(result['username'], 'BILL')
+              } catch (e) {
+                err = e
+              }
+              return done(err)
+            }
+          )
+        }
+      }),
     ]
   })
 })
