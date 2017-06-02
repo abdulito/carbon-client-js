@@ -10,6 +10,8 @@ var testtube = require('@carbon-io/test-tube')
 
 var RestClient = require('../lib/RestClient')
 
+var NODE_MAJOR_VERSION = parseInt(process.version.match(/v(\d+)\..+/)[1])
+
 /******************************************************************************
  *
  */
@@ -48,6 +50,11 @@ __(function() {
         name: 'AuthHeaderTests',
         description: '',
         setup: function(ctx) {
+          if (NODE_MAJOR_VERSION >= 7) {
+            throw new testtube.errors.SkipTestError(
+              'nock.matchHeader broken in node 8 (' +
+              'https://github.com/node-nock/nock/issues/925)')
+          }
           nock(ctx.global.testUrl).get('/header-authenticated-users')
             .matchHeader('API_KEY', '123')
             .reply(200, [{
