@@ -1,8 +1,8 @@
 .. _carbon-client-js:
 
-=============
-Carbon Client
-=============
+================
+Carbon Client JS
+================
 
 CarbonClient is the client-component for Carbon.io. It is a light-weight
 RESTFul client For NodeJS that can connect to any REST API. It uses the
@@ -22,31 +22,15 @@ Main features:
 Installation
 ------------
 
-::
 
-    <path-to-your-app>/
-        package.json
-
-Your package.json should include ``carbon-client-node``
+Include carbon-client.js in your scripts and you are good to go!
 
 
 
-.. code:: javascript
+.. code:: html
 
-  {
-    "dependencies": {
+  <script src="build/carbon-client.js" type="application/javascript"></script>
 
-        "@carbon-io/carbon-client-node": "git+ssh://git@github.com/carbon-io/carbon-client-node.git"
-
-    }
-  }
-
-Then install the package dependencies like this:
-
-::
-
-    % cd <path-to-your-app>
-    % npm install .
 
 -----------
 Quick Start
@@ -57,7 +41,7 @@ This is a simple example for an http get operation
 .. code:: javascript
 
     // require the client
-    var CarbonClient = require('@carbon-io/carbon-client-node')
+    var CarbonClient = require('@carbon-io/carbon-client-js')
 
     // Service for this example: https://github.com/carbon-io/example__hello-world-service/blob/master/lib/HelloService.js
 
@@ -95,7 +79,7 @@ Supported calling forms for ``Endpoint.get()`` are as follows:
 .. code:: javascript
 
     // require the client
-    var CarbonClient = require('@carbon-io/carbon-client-node')
+    var CarbonClient = require('@carbon-io/carbon-client-js')
 
     var client = new CarbonClient("http://localhost:8888")
 
@@ -138,7 +122,7 @@ Query string params are passed as an object through the
 .. code:: javascript
 
     // require the client
-    var CarbonClient = require('@carbon-io/carbon-client-node')
+    var CarbonClient = require('@carbon-io/carbon-client-js')
 
     // Service for this example: https://github.com/carbon-io/example__hello-world-service-parameter-parsing/blob/master/lib/HelloService.js
 
@@ -181,7 +165,7 @@ Supported calling forms for ``Endpoint.post()`` are as follows:
 .. code:: javascript
 
     // require the client
-    var CarbonClient = require('@carbon-io/carbon-client-node')
+    var CarbonClient = require('@carbon-io/carbon-client-js')
 
     // Service for this example: https://github.com/carbon-io/examples/blob/master/hello-world/HelloService.js
 
