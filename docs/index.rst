@@ -1,4 +1,4 @@
-.. _carbon-client-js:
+.. _carbon-client:
 
 ================
 Carbon Client JS
@@ -38,21 +38,9 @@ Quick Start
 
 This is a simple example for an http get operation
 
-.. code:: javascript
-
-    // require the client
-    var CarbonClient = require('@carbon-io/carbon-client-js')
-
-    // Service for this example: https://github.com/carbon-io/example__hello-world-service/blob/master/lib/HelloService.js
-
-    // create the client object
-    var client = new CarbonClient("http://localhost:8888")
-
-    // GET http://localhost:8888/hello
-    client.getEndpoint("hello").get(function(e, response) {
-      console.log("Response from /hello: ")
-      console.log(response.body)
-    })
+.. literalinclude:: code-frags/quick-start.js
+    :language: javascript
+    :linenos:
 
 ---
 Use
@@ -76,23 +64,9 @@ Supported calling forms for ``Endpoint.get()`` are as follows:
 -  get(cb)
 -  get(options, cb)
 
-.. code:: javascript
-
-    // require the client
-    var CarbonClient = require('@carbon-io/carbon-client-js')
-
-    var client = new CarbonClient("http://localhost:8888")
-
-    // Service for this example: https://github.com/carbon-io/example__hello-world-service/blob/master/lib/HelloService.js
-
-    // create an endpoint object for /hello
-    endpoint = client.getEndpoint("hello")
-
-    // call get() which will call GET on http://localhost:8888/hello
-    endpoint.get(function(e, response) {
-      console.log("Response from /hello: ")
-      console.log(response.body)
-    })
+.. literalinclude:: code-frags/get.js
+    :language: javascript
+    :linenos:
 
 ***************
 Response object
@@ -119,37 +93,9 @@ Query string params are passed as an object through the
 ``options.params`` argument of each http method
 
 
-.. code:: javascript
-
-    // require the client
-    var CarbonClient = require('@carbon-io/carbon-client-js')
-
-    // Service for this example: https://github.com/carbon-io/example__hello-world-service-parameter-parsing/blob/master/lib/HelloService.js
-
-    var client = new CarbonClient("http://localhost:8888")
-
-    // create an endpoint object for /hello
-    var endpoint = client.getEndpoint("hello")
-
-    var options = {
-      params: {
-        message: "Welcome to carbon-io!"
-
-      }
-    }
-
-    // GET http://localhost:8888/hello?message="Welcome to carbon-io!"
-    endpoint.get(options, function(e, response) {
-      console.log("Response from /hello: ")
-      console.log(response.body)
-    })
-
-Output:
-
-::
-
-    Response from /hello:
-    { msg: 'Hello world! Welcome to carbon-io!' }
+.. literalinclude:: code-frags/get-with-params.js
+    :language: javascript
+    :linenos:
 
 ****
 POST
@@ -162,26 +108,9 @@ Supported calling forms for ``Endpoint.post()`` are as follows:
 -  post(body, options, cb)
 
 
-.. code:: javascript
-
-    // require the client
-    var CarbonClient = require('@carbon-io/carbon-client-js')
-
-    // Service for this example: https://github.com/carbon-io/examples/blob/master/hello-world/HelloService.js
-
-    var client = new CarbonClient("http://localhost:8888")
-
-    // create an endpoint object for /hello
-    var endpoint = client.getEndpoint("hello")
-
-    var body = {
-      msg: "Welcome to carbon-io!"
-    }
-
-    endpoint.post(body, function(e, response) {
-      console.log("Response from /hello: ")
-      console.log(response.body)
-    })
+.. literalinclude:: code-frags/post.js
+    :language: javascript
+    :linenos:
 
 *********
 PUT/PATCH
@@ -191,17 +120,9 @@ PUT/PATCH
 ``Endpoint.patch()`` methods respectively. Arguments of these methods
 are all the same and similar to the ``Endpoint.post()`` method.
 
-.. code:: javascript
-
-    //  put to /users
-    client.getEndpoint("users").put({
-        "id": 1234,
-        "name": "bob"
-      },
-      function(e, response) {
-        console.log("Response from /users:")
-        console.log(response.body)
-    })
+.. literalinclude:: code-frags/put.js
+    :language: javascript
+    :linenos:
 
 *******************
 HEAD/OPTIONS/DELETE
@@ -219,10 +140,10 @@ Supported calling forms for ``Endpoint.head()`` are as follows:
 
 .. code:: javascript
 
-    //  call http OPTIONS method
-    client.getEndpoint("test-options").options(null,
+    //  call http HEAD method
+    client.getEndpoint("test-head").head(null,
       function(e, response) {
-        console.log("Response from /test-options:")
+        console.log("Response from /test-head:")
         console.log(response.body)
     })
 
