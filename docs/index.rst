@@ -42,13 +42,9 @@ This is a simple example for an http get operation
     :language: javascript
     :linenos:
 
----
-Use
----
-
-****************
+----------------
 Basic HTTP calls
-****************
+----------------
 
 All http methods are supported through ``Endpoint`` object. Each http
 method has a matching ``Endpoint`` method with same name all lowercase.
@@ -147,9 +143,9 @@ Supported calling forms for ``Endpoint.head()`` are as follows:
         console.log(response.body)
     })
 
-***********************
+-----------------------
 Collections and Cursors
-***********************
+-----------------------
 
 CarbonClient provides convenient interfaces to access collections. It
 provides classes similar to MongoDB Driver Collection/Cursor classes.
@@ -157,9 +153,9 @@ You can perform ``find()``, ``insert()``, ``update()``,
 ``findObject()``, ``updateObject()``, ``saveObject()``, ``remove()``,
 ``removeObject()``.
 
-^^^^^^
+******
 find()
-^^^^^^
+******
 
 The ``find()`` method returns a ``Cursor`` object which is used to
 iterate over results.
@@ -189,8 +185,9 @@ iterate over results.
 The ``find()`` method returns a ``Cursor`` object which is used to
 iterate over results.
 
+****************
 Cursor iteration
-''''''''''''''''
+****************
 
 The ``Cursor.toArray()`` loads all results into a single array object
 which could be memory consuming. To avoid that, use the
@@ -230,8 +227,9 @@ It will return ``null`` when the cursor finishes.
 
     })
 
+*****************
 Cursor pagination
-'''''''''''''''''
+*****************
 
 Pagination for results returned by ``find()`` can be achieved with
 ``skip`` and ``limit`` options through the ``options`` argument:
@@ -247,8 +245,9 @@ Pagination for results returned by ``find()`` can be achieved with
 
     })
 
+**********************
 Sorting find() results
-''''''''''''''''''''''
+**********************
 
 ``options`` argument also allows ``sort`` which takes a key to sort on:
 
@@ -265,8 +264,9 @@ Sorting find() results
 
     })
 
+*************************************
 Limiting fields within find() results
-'''''''''''''''''''''''''''''''''''''
+*************************************
 
 You can limit the set of fields returned by find using
 ``options.projection`` argument. The ``projection`` argument can be
@@ -315,9 +315,9 @@ set field value to be 1 to include, 0 to exclude.
     })
 
 
-^^^^^^^^^^^^
+************
 findObject()
-^^^^^^^^^^^^
+************
 
 Finds the object with the specified object id.
 
@@ -325,9 +325,9 @@ Supported calling forms:
 
 -  ``findObject(id, cb)``
 
-^^^^^^^^
+********
 insert()
-^^^^^^^^
+********
 
 Supported calling forms:
 
@@ -344,53 +344,53 @@ Supported calling forms:
       }
     )
 
-^^^^^^^^
+********
 update()
-^^^^^^^^
+********
 
 Supported calling forms:
 
 -  ``update(query, obj, cb)``
 -  ``update(query, obj, options, cb)```
 
-^^^^^^^^^^^^^^
+**************
 updateObject()
-^^^^^^^^^^^^^^
+**************
 
 Supported calling forms:
 
 -  ``updateObject(id, update, cb)``
 
 
-^^^^^^^^^^^^
+************
 saveObject()
-^^^^^^^^^^^^
+************
 
 Supported calling forms:
 
 -  ``saveObject(id, obj, cb)``
 
 
-^^^^^^^^
+********
 remove()
-^^^^^^^^
+********
 
 Supported calling forms:
 
 -  ``remove(query, cb)``
 -  ``remove(query, options, cb)``
 
-^^^^^^^^^^^^^^
+**************
 removeObject()
-^^^^^^^^^^^^^^
+**************
 
 Supported calling forms:
 
 -  ``removeObject(id, cb)``
 
-~~~~~~~~~~~~~~
+--------------
 Error handling
-~~~~~~~~~~~~~~
+--------------
 
 Errors raised by CarbonClient are instances of the HttpError class
 defined in `HttpErrors <https://github.com/carbon-io/http-errors>`__
@@ -411,9 +411,9 @@ and description.
       }
     })
 
-~~~~~~~~~~~~~
+-------------
 Endpoint Tree
-~~~~~~~~~~~~~
+-------------
 
 As a convenience, ``Endpoint`` allow accessing sub-endpoints using the
 ``Endpoint.getEndpoint()`` method. You can also access the parent
@@ -436,9 +436,10 @@ Endpoint full uri and absolute path can be accessed as follows
 
     console.log(e1.getFullUrl()) // this will return client.uri + endpoint's absolute path which will be http://localhost:8888/foo/bar in this case
 
-~~~~~~~~~~~~~~~
+---------------
 Passing Headers
-~~~~~~~~~~~~~~~
+---------------
+
 
 Headers can be passed as JSON with the ``options.headers`` option. This
 can be client-level or operation-level. This is an example of an
@@ -453,9 +454,9 @@ operation-level header passing.
        }
      )
 
-~~~~~~~
+-------
 Options
-~~~~~~~
+-------
 
 Options can be be set at client-level or operation-level.
 
@@ -471,9 +472,9 @@ endpoint http method.
 
 Supported options are as follows:
 
-^^^^^^^^^^^^^^
+**************
 Authentication
-^^^^^^^^^^^^^^
+**************
 
 Currently, CarbonClient only supports api-key authentication model.
 CarbonClient allows Api key authentication by passing the api key value
@@ -492,9 +493,9 @@ key parameter in every request. See following example:
       }
     })
 
-^^^^^^^^^^^
+***********
 SSL Options
-^^^^^^^^^^^
+***********
 
 SSL options are as follows:
 ``strictSSL: If true, requires SSL certificates be valid  cert: cert file content  key: key file content  ca: ca file content``
@@ -513,9 +514,9 @@ Here is an example of that
 
     client = new CarbonClient(uri, defaultOptions);
 
-^^^^^^^^^^^^^^^^^^^^^^^
+***********************
 JSON/Plain-text Results
-^^^^^^^^^^^^^^^^^^^^^^^
+***********************
 
 All results are in JSON by default. For plain text, set ``options.json``
 to false:
@@ -527,9 +528,9 @@ to false:
        console.log("Response from /hello: " + response.body)
      })
 
-^^^^^^^^^
+*********
 keepAlive
-^^^^^^^^^
+*********
 
 keepAlive can be set through the ``forever`` option
 
@@ -537,9 +538,9 @@ keepAlive can be set through the ``forever`` option
 
     client = new CarbonClient(uri, {forever: true});
 
-^^^^^^^
+*******
 timeout
-^^^^^^^
+*******
 
 timeout can be set through the ``timeout`` option. Its an integer
 representing timeout in milliseconds. This applies to both connection
