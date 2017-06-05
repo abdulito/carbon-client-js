@@ -1,36 +1,34 @@
 .. _carbon-client:
 
-================
-Carbon Client JS
-================
+=============================
+carbon-client-js
+=============================
 
-CarbonClient is the client-component for Carbon.io. It is a light-weight
-RESTFul client For NodeJS that can connect to any REST API. It uses the
-standard node ``request`` module to make http calls.
+--------
+Overview
+--------
 
-Main features:
-
--  Support for all HTTP methods: ``GET``, ``PUT``, ``POST``, ``CREATE``,
-   ``DELETE``, ``HEAD``, ``OPTIONS``, ``PATCH``.
--  Support for all Carbon.io collections endpoint methods: ``find()``,
-   ``insert()``, ``update()``, ``findObject()``, ``updateObject()``,
-   ``saveObject()``, ``remove()``, ``removeObject()``.
-
--  Authentication
+``carbon-client-js`` is the Javascript client for Carbon.io services. As for Node.js, there is an extension for this driver with more Node.js abilities.
+For more info, please refer to :ref:`carbon-client-node <carbon-client-node>`.
 
 ------------
 Installation
 ------------
 
 
-Include carbon-client.js in your scripts and you are good to go!
-
+Download ``carbon-client.js`` and include carbon-client.js in your scripts and you are good to go!
 
 
 .. code:: html
 
   <script src="build/carbon-client.js" type="application/javascript"></script>
 
+------------------
+Browser Compatibility
+------------------
+
+* Chrome
+* Firefox
 
 -----------
 Quick Start
@@ -63,6 +61,7 @@ Supported calling forms for ``Endpoint.get()`` are as follows:
 .. literalinclude:: code-frags/get.js
     :language: javascript
     :linenos:
+    :lines: 8-
 
 ***************
 Response object
@@ -92,6 +91,7 @@ Query string params are passed as an object through the
 .. literalinclude:: code-frags/get-with-params.js
     :language: javascript
     :linenos:
+    :lines: 9-
 
 ****
 POST
@@ -107,6 +107,7 @@ Supported calling forms for ``Endpoint.post()`` are as follows:
 .. literalinclude:: code-frags/post.js
     :language: javascript
     :linenos:
+    :lines: 6-
 
 *********
 PUT/PATCH
@@ -119,6 +120,7 @@ are all the same and similar to the ``Endpoint.post()`` method.
 .. literalinclude:: code-frags/put.js
     :language: javascript
     :linenos:
+    :lines: 6-
 
 *******************
 HEAD/OPTIONS/DELETE
@@ -134,14 +136,10 @@ Supported calling forms for ``Endpoint.head()`` are as follows:
 -  head(cb)
 -  head(options, cb)
 
-.. code:: javascript
-
-    //  call http HEAD method
-    client.getEndpoint("test-head").head(null,
-      function(e, response) {
-        console.log("Response from /test-head:")
-        console.log(response.body)
-    })
+.. literalinclude:: code-frags/head.js
+    :language: javascript
+    :linenos:
+    :lines: 6-
 
 -----------------------
 Collections and Cursors
@@ -152,6 +150,8 @@ provides classes similar to MongoDB Driver Collection/Cursor classes.
 You can perform ``find()``, ``insert()``, ``update()``,
 ``findObject()``, ``updateObject()``, ``saveObject()``, ``remove()``,
 ``removeObject()``.
+
+Collection objects can be accessed by the ``client.getCollection()`` method.
 
 ******
 find()

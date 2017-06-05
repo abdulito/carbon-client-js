@@ -5,9 +5,6 @@ var CarbonClient = require('@carbon-io/carbon-client')
 
 var client = new CarbonClient("http://localhost:8888")
 
-// create an endpoint object for /hello
-var endpoint = client.getEndpoint("hello")
-
 var options = {
   params: {
     who: "carbon"
@@ -16,7 +13,7 @@ var options = {
 }
 
 // GET http://localhost:8888/hello?message="Welcome to carbon-io!"
-endpoint.get(options, function(e, response) {
+client.getEndpoint("hello").get(options, function(e, response) {
   console.log("Response from /hello: ")
   console.log(response.body)
 })
