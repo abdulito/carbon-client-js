@@ -157,33 +157,18 @@ Collection objects can be accessed by the ``client.getCollection()`` method.
 find()
 ******
 
-The ``find()`` method returns a ``Cursor`` object which is used to
-iterate over results.
+The ``find()`` method invokes a ``find`` operation on the service collection and returns a ``Cursor`` object that is
+used to iterate over results.
 
 ``find()`` supports the following calling forms
 
 -  ``find(query)``
 -  ``find(query, options)``
 
-.. code:: javascript
-
-    // find all users
-    var usersCollection = client.getCollection("users")
-    usersCollection.find().toArray(function(e, data) {
-      console.log("All users")
-      console.log(data)
-    })
-
-    // find by query
-    usersCollection.find({"name": "joe"}).toArray(function(e, data) {
-      console.log("All users matching name 'joe'")
-      console.log(data)
-    })
-
-    })
-
-The ``find()`` method returns a ``Cursor`` object which is used to
-iterate over results.
+.. literalinclude:: code-frags/find.js
+    :language: javascript
+    :linenos:
+    :lines: 9-
 
 ****************
 Cursor iteration
@@ -194,38 +179,20 @@ which could be memory consuming. To avoid that, use the
 ``Cursor.each()`` method which takes a function to iterate over each
 item of results. It will return ``null`` when the cursor finishes.
 
-.. code:: javascript
-
-    // find all users
-    var usersCollection = client.getCollection("users")
-    var cursor = usersCollection.find()
-    cursor.each(function(e, item) {
-      if (item == null) {
-        console.log("Finish!")
-      } else {
-         console.log(item)
-      }
+.. literalinclude:: code-frags/each.js
+    :language: javascript
+    :linenos:
+    :lines: 9-
 
 
-    })
 
 Cursors also provide a ``next()`` method to iterate over a single item.
 It will return ``null`` when the cursor finishes.
 
-.. code:: javascript
-
-    // find all users
-    var usersCollection = client.getCollection("users")
-    var cursor = usersCollection.find()
-    cursor.next(function(e, item) {
-      if (item == null) {
-        console.log("Finish!")
-      } else {
-        console.log("Next item:")
-        console.log(item)
-      }
-
-    })
+.. literalinclude:: code-frags/next.js
+    :language: javascript
+    :linenos:
+    :lines: 9-
 
 *****************
 Cursor pagination
@@ -234,35 +201,21 @@ Cursor pagination
 Pagination for results returned by ``find()`` can be achieved with
 ``skip`` and ``limit`` options through the ``options`` argument:
 
-.. code:: javascript
-
-
-    var usersCollection = client.getCollection("users")
-    var cursor = usersCollection.find({}, {skip:100, limit:100}).toArray(function(e, data) {
-      for(var i=0; i < data.length; i++) {
-         console.log(data[i])
-      }
-
-    })
+.. literalinclude:: code-frags/skip-limit.js
+    :language: javascript
+    :linenos:
+    :lines: 9-
 
 **********************
 Sorting find() results
 **********************
 
-``options`` argument also allows ``sort`` which takes a key to sort on:
+``options`` argument allows ``sort`` which takes a key to sort on:
 
-.. code:: javascript
-
-
-    var usersCollection = client.getCollection("users")
-
-    // find all users sort by name descending
-    var cursor = usersCollection.find({}, {sort:{"name": -1}}).toArray(function(e, data) {
-      for(var i=0; i < data.length; i++) {
-         console.log(data[i])
-      }
-
-    })
+.. literalinclude:: code-frags/sort.js
+    :language: javascript
+    :linenos:
+    :lines: 9-
 
 *************************************
 Limiting fields within find() results
@@ -281,38 +234,10 @@ specified in the following form:
 
 set field value to be 1 to include, 0 to exclude.
 
-.. code:: javascript
-
-
-    var usersCollection = client.getCollection("users")
-
-    // find all users and get _id and name, address.city only
-    usersCollection.find({}, {
-        projection: {
-          _id: 1,
-          "name": 1,
-          "address.city": 1
-        }
-       }).toArray(function(e, data) {
-      for(var i=0; i < data.length; i++) {
-         console.log(data[i])
-      }
-
-    })
-
-    // exclude "address" only
-
-    // find all users and get _id and name, address.city only
-    usersCollection.find({}, {
-        projection: {
-          "address": 0
-        }
-       }).toArray(function(e, data) {
-      for(var i=0; i < data.length; i++) {
-         console.log(data[i])
-      }
-
-    })
+.. literalinclude:: code-frags/projection.js
+    :language: javascript
+    :linenos:
+    :lines: 9-
 
 
 ************
@@ -549,3 +474,10 @@ and read timeouts.
 .. code:: javascript
 
     client = new CarbonClient(uri, {timeout: true});
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
