@@ -61,7 +61,7 @@ Supported calling forms for ``Endpoint.get()`` are as follows:
 .. literalinclude:: code-frags/get.js
     :language: javascript
     :linenos:
-    :lines: 8-
+    :lines: 6-
 
 ***************
 Response object
@@ -91,7 +91,7 @@ Query string params are passed as an object through the
 .. literalinclude:: code-frags/get-with-params.js
     :language: javascript
     :linenos:
-    :lines: 9-
+    :lines: 6-
 
 ****
 POST
@@ -168,7 +168,7 @@ used to iterate over results.
 .. literalinclude:: code-frags/find.js
     :language: javascript
     :linenos:
-    :lines: 9-
+    :lines: 6-
 
 ****************
 Cursor iteration
@@ -182,7 +182,7 @@ item of results. It will return ``null`` when the cursor finishes.
 .. literalinclude:: code-frags/each.js
     :language: javascript
     :linenos:
-    :lines: 9-
+    :lines: 6-
 
 
 
@@ -192,7 +192,7 @@ It will return ``null`` when the cursor finishes.
 .. literalinclude:: code-frags/next.js
     :language: javascript
     :linenos:
-    :lines: 9-
+    :lines: 6-
 
 *****************
 Cursor pagination
@@ -204,7 +204,7 @@ Pagination for results returned by ``find()`` can be achieved with
 .. literalinclude:: code-frags/skip-limit.js
     :language: javascript
     :linenos:
-    :lines: 9-
+    :lines: 6-
 
 **********************
 Sorting find() results
@@ -215,7 +215,7 @@ Sorting find() results
 .. literalinclude:: code-frags/sort.js
     :language: javascript
     :linenos:
-    :lines: 9-
+    :lines: 6-
 
 *************************************
 Limiting fields within find() results
@@ -237,7 +237,7 @@ set field value to be 1 to include, 0 to exclude.
 .. literalinclude:: code-frags/projection.js
     :language: javascript
     :linenos:
-    :lines: 9-
+    :lines: 6-
 
 
 ************
@@ -250,6 +250,11 @@ Supported calling forms:
 
 -  ``findObject(id, cb)``
 
+.. literalinclude:: code-frags/find-object.js
+    :language: javascript
+    :linenos:
+    :lines: 6-
+
 ********
 insert()
 ********
@@ -258,16 +263,12 @@ Supported calling forms:
 
 -  ``insert(obj, cb)``
 
-.. code:: javascript
+.. literalinclude:: code-frags/insert.js
+    :language: javascript
+    :linenos:
+    :lines: 6-
 
-    usersCollection.insert({
-        username: "joe"
-      },
-      function(e, result) {
-        assert(result.ok) // true for success
-        console.log(result)
-      }
-    )
+
 
 ********
 update()

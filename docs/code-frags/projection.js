@@ -1,17 +1,14 @@
 // require the client
 var CarbonClient = require('@carbon-io/carbon-client')
 
-// Service for this example: https://github.com/carbon-io/example__hello-world-service/blob/master/lib/HelloService.js
-
 var client = new CarbonClient("http://localhost:8888")
-
 
 var usersCollection = client.getCollection("users")
 // find all users and get _id and name, address.city only
 usersCollection.find({}, {
   projection: {
     _id: 1,
-    "name": 1,
+    name: 1,
     "address.city": 1
   }
 }).toArray(function(e, data) {
@@ -25,8 +22,8 @@ usersCollection.find({}, {
 
 // find all users and get _id and name, address.city only
 usersCollection.find({}, {
-  projection: {
-    "address": 0
+  XXXprojection: {
+    address: 0
   }
 }).toArray(function(e, data) {
   for(var i=0; i < data.length; i++) {

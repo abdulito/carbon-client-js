@@ -1,8 +1,6 @@
 // require the client
 var CarbonClient = require('@carbon-io/carbon-client')
 
-// Service for this example: https://github.com/carbon-io/example__hello-world-service-parameter-parsing/blob/master/lib/HelloService.js
-
 var client = new CarbonClient("http://localhost:8888")
 
 var options = {
