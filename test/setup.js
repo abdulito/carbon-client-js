@@ -173,6 +173,20 @@ nock(testUrl).patch('/users/123')
   }).persist();
 
 /**********************************************************************
+ * users.update({username: "joe"}, {$set: {email: "joe@foo.com"}): PATCH /users?query=...
+ */
+nock(testUrl).patch(
+  '/users', {
+    '$set': {
+      email: 'joe@foo.com'
+    }
+  })
+  .query({query: ejson.stringify({"username":"joe"})})
+  .reply(200, {
+    ok: true
+  }).persist();
+
+/**********************************************************************
  * error
  */
 nock(testUrl).get('/error')
