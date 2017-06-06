@@ -279,6 +279,11 @@ Supported calling forms:
 -  ``update(query, obj, cb)``
 -  ``update(query, obj, options, cb)```
 
+.. literalinclude:: code-frags/update.js
+    :language: javascript
+    :linenos:
+    :lines: 6-
+
 **************
 updateObject()
 **************
@@ -287,6 +292,10 @@ Supported calling forms:
 
 -  ``updateObject(id, update, cb)``
 
+.. literalinclude:: code-frags/update-object.js
+    :language: javascript
+    :linenos:
+    :lines: 6-
 
 ************
 saveObject()
@@ -296,6 +305,10 @@ Supported calling forms:
 
 -  ``saveObject(id, obj, cb)``
 
+.. literalinclude:: code-frags/save-object.js
+    :language: javascript
+    :linenos:
+    :lines: 6-
 
 ********
 remove()
@@ -306,6 +319,11 @@ Supported calling forms:
 -  ``remove(query, cb)``
 -  ``remove(query, options, cb)``
 
+.. literalinclude:: code-frags/remove.js
+    :language: javascript
+    :linenos:
+    :lines: 6-
+
 **************
 removeObject()
 **************
@@ -314,6 +332,10 @@ Supported calling forms:
 
 -  ``removeObject(id, cb)``
 
+.. literalinclude:: code-frags/remove-object.js
+    :language: javascript
+    :linenos:
+    :lines: 6-
 --------------
 Error handling
 --------------
