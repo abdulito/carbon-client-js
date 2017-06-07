@@ -1,8 +1,8 @@
 .. _carbon-client:
 
-=============================
+
 carbon-client-js
-=============================
+================
 
 --------
 Overview
@@ -10,6 +10,8 @@ Overview
 
 ``carbon-client-js`` is the Javascript client for Carbon.io services. As for Node.js, there is an extension for this client with more Node.js abilities.
 For more info, please refer to :ref:`carbon-client-node <carbon-client-node>`.
+
+.. contents:: Table of Contents
 
 ------------
 Installation
