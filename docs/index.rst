@@ -336,6 +336,8 @@ Supported calling forms:
     :language: javascript
     :linenos:
     :lines: 6-
+
+
 --------------
 Error handling
 --------------
@@ -345,19 +347,22 @@ defined in `HttpErrors <https://github.com/carbon-io/http-errors>`__
 module of carbon. An HttpError contains the http error code, message,
 and description.
 
+.. literalinclude:: code-frags/error-handling.js
+    :language: javascript
+    :linenos:
+    :lines: 6-
 
-.. code:: javascript
+Output:
+
+.. code::
+
+    Caught an error
+    code: 404
+    message: Cannot GET /doesnotexit
+    description: Not Found
 
 
-    // GET http://localhost:8888/doesnotexit
-    client.getEndpoint("doesnotexit").get(function(e, response) {
-      if(e) {
-          console.log("Caught an error")
-          console.log("code: " + e.code); // 404
-          console.log("message: " + e.message);
-          console.log("description: " + e.description);
-      }
-    })
+
 
 -------------
 Endpoint Tree
@@ -395,7 +400,6 @@ operation-level header passing.
 
 .. code:: javascript
 
-     // Plain text
      client.getEndpoint("hello").get({headers: {"Cache-Control": "no-cache"}},
          function(e, response) {
            console.log("Response from /hello: " + response.body)
