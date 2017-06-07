@@ -8,7 +8,7 @@ carbon-client-js
 Overview
 --------
 
-``carbon-client-js`` is the Javascript client for Carbon.io services. As for Node.js, there is an extension for this driver with more Node.js abilities.
+``carbon-client-js`` is the Javascript client for Carbon.io services. As for Node.js, there is an extension for this client with more Node.js abilities.
 For more info, please refer to :ref:`carbon-client-node <carbon-client-node>`.
 
 ------------
@@ -34,7 +34,7 @@ Browser Compatibility
 Quick Start
 -----------
 
-This is a simple example for an http get operation
+This is a simple example for an http get operation:
 
 .. literalinclude:: code-frags/quick-start.js
     :language: javascript
@@ -68,7 +68,7 @@ Response object
 ***************
 
 The ``response`` object that is returned by ``CarbonClient`` is the
-response object from the nodejs ``request`` module. Full doc here
+response object from the Node.js ``request`` module. Full doc here
 https://github.com/request/request
 
 Some available fields are:
@@ -394,9 +394,7 @@ Passing Headers
 ---------------
 
 
-Headers can be passed as JSON with the ``options.headers`` option. This
-can be client-level or operation-level. This is an example of an
-operation-level header passing.
+Headers can be passed as JSON with the ``options.headers`` option. This is an example of an operation-level header passing.
 
 .. code:: javascript
 
@@ -406,23 +404,54 @@ operation-level header passing.
        }
      )
 
--------
-Options
--------
+----------------
+options argument
+----------------
 
-Options can be be set at client-level or operation-level.
+``options`` argument controls certain settings for requests made by the client.
+``options`` can be provided at client-level or operation-level.
 
-To set options at the client level, it is passed with the "options"
-constructor argument ``CarbonClient(url, options)``. For passing them on
-the operation-level, it is passed with the "options" argument for each
-endpoint http method.
+
+*************************
+List of supported options
+*************************
+
+   * params
+   * headers
+   * timeout
+   * forever
+   * json
+   * strictSSL
+   * cert
+   * key
+   * ca
+   * authentication (client-level only)
+
+
+********************
+Client-level options
+********************
+
+To set options at the client level, it is passed with the "options" constructor argument ``CarbonClient(url, options)``
+
+.. code:: javascript
+
+    // Create a client that will send a 'no-cache' header for all requests
+
+    var client = new CarbonClient("http://localhost:8888", {
+      headers: {"Cache-Control": "no-cache"}
+    })
+
+***********************
+Operation-level options
+***********************
+
+For passing options at operation-level, it is passed with the "options" argument for each endpoint http method.
 
 .. code:: javascript
 
     //e.g
     endpoint.get(options, cb)
-
-Supported options are as follows:
 
 **************
 Authentication
@@ -434,7 +463,6 @@ in the header or query string. This will make the client send the api
 key parameter in every request. See following example:
 
 .. code:: javascript
-
 
     var client = new CarbonClient("http://localhost:8888", {
       authentication: {
