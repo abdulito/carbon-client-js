@@ -494,7 +494,7 @@ Here is an example of that
       strictSSL: true
     }
 
-    client = new CarbonClient(uri, defaultOptions);
+    client = new CarbonClient(uri, defaultOptions)
 
 ***********************
 JSON/Plain-text Results
@@ -518,7 +518,7 @@ keepAlive can be set through the ``forever`` option
 
 .. code:: javascript
 
-    client = new CarbonClient(uri, {forever: true});
+    client = new CarbonClient(uri, {forever: true})
 
 *******
 timeout
@@ -530,7 +530,7 @@ and read timeouts.
 
 .. code:: javascript
 
-    client = new CarbonClient(uri, {timeout: true});
+    client = new CarbonClient(uri, {timeout: true})
 
 Indices and tables
 ==================
