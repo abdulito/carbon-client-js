@@ -20,9 +20,8 @@ usersCollection.find({}, {
 
 // exclude "address" only
 
-// find all users and get _id and name, address.city only
 usersCollection.find({}, {
-  XXXprojection: {
+  projection: {
     address: 0
   }
 }).toArray(function(e, data) {
