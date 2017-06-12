@@ -1,8 +1,8 @@
-********
-update()
-********
+******
+update
+******
 
-Supported calling forms:
+Supported calling forms for ``Collection.update()`` are as follows:
 
 -  ``update(query, obj, cb)``
 -  ``update(query, obj, options, cb)```

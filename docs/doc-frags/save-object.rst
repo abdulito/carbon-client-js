@@ -1,8 +1,8 @@
-************
-saveObject()
-************
+**********
+saveObject
+**********
 
-Supported calling forms:
+Supported calling forms for ``Collection.saveObject()`` are as follows:
 
 -  ``saveObject(id, obj, cb)``
 

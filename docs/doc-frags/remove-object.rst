@@ -1,8 +1,8 @@
-**************
-removeObject()
-**************
+************
+removeObject
+************
 
-Supported calling forms:
+Supported calling forms for ``Collection.removeObject()`` are as follows:
 
 -  ``removeObject(id, cb)``
 

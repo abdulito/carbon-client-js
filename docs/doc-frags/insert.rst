@@ -1,8 +1,8 @@
-********
-insert()
-********
+******
+insert
+******
 
-Supported calling forms:
+Supported calling forms for ``Collection.insert()`` are as follows:
 
 -  ``insert(obj, cb)``
 

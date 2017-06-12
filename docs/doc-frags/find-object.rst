@@ -1,10 +1,8 @@
-************
-findObject()
-************
+**********
+findObject
+**********
 
-Finds the object with the specified object id.
-
-Supported calling forms:
+Supported calling forms for ``Collection.find()`` are as follows:
 
 -  ``findObject(id, cb)``
 

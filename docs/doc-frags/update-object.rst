@@ -1,8 +1,8 @@
-**************
-updateObject()
-**************
+************
+updateObject
+************
 
-Supported calling forms:
+Supported calling forms for ``Collection.updateObject()`` are as follows:
 
 -  ``updateObject(id, update, cb)``
 

@@ -65,13 +65,15 @@ Browser Compatibility
 
 .. include:: doc-frags/next.rst
 
-.. include:: doc-frags/cursor-pagination.rst
+.. include:: doc-frags/skip-limit.rst
 
 .. include:: doc-frags/sort.rst
 
 .. include:: doc-frags/projection.rst
 
 .. include:: doc-frags/find-object.rst
+
+.. include:: doc-frags/update.rst
 
 .. include:: doc-frags/update-object.rst
 

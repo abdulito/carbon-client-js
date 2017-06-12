@@ -1,6 +1,6 @@
-******
-find()
-******
+****
+find
+****
 
 The ``find()`` method invokes a ``find`` operation on the service collection and returns a ``Cursor`` object that is
 used to iterate over results.
