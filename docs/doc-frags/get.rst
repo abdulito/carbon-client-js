@@ -1,13 +1,13 @@
-*******
-delete
-*******
+***
+get
+***
 
-Supported calling forms for ``Endpoint.delete()`` are as follows:
+Supported calling forms for ``Endpoint.get()`` are as follows:
 
--  delete(cb)
--  delete(options, cb)
+-  get(cb)
+-  get(options, cb)
 
-.. literalinclude:: code-frags/delete.js
+.. literalinclude:: code-frags/get.js
     :language: javascript
     :linenos:
     :lines: 6-

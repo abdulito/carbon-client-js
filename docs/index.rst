@@ -59,7 +59,11 @@ Browser Compatibility
 
 .. include:: doc-frags/find.rst
 
-.. include:: doc-frags/cursor-iteration.rst
+.. include:: doc-frags/to-array.rst
+
+.. include:: doc-frags/each.rst
+
+.. include:: doc-frags/next.rst
 
 .. include:: doc-frags/cursor-pagination.rst
 

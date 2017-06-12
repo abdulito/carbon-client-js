@@ -2,7 +2,7 @@
 delete
 ******
 
-Supported calling forms for ``Endpoint.patch()`` are as follows:
+Supported calling forms for ``Endpoint.delete()`` are as follows:
 
 -  delete(cb)
 -  delete(options, cb)
