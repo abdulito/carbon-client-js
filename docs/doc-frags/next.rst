@@ -7,7 +7,7 @@ It will return ``null`` when the cursor finishes.
 
 Supported calling forms for ``Cursor.next()`` are as follows:
 
--  ``findObject(id, cb)``
+-  ``next(cb)``
 
 .. literalinclude:: code-frags/next.js
     :language: javascript
