@@ -4,16 +4,8 @@
 carbon-client-js
 ================
 
---------
-Overview
---------
-
 ``carbon-client-js`` is the Javascript client for Carbon.io services.
 
-
-
-
-.. contents:: Table of Contents
 
 ------------
 Installation
