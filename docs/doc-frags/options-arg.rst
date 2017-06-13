@@ -11,7 +11,7 @@ options argument
 List of supported options
 *************************
 
-   * params
+   * parameters
    * headers
    * timeout
    * forever
