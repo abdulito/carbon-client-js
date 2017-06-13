@@ -1,6 +1,6 @@
 .. _carbon-client:
 
-
+================
 carbon-client-js
 ================
 
@@ -90,10 +90,3 @@ Browser Compatibility
 .. include:: doc-frags/passing-headers.rst
 
 .. include:: doc-frags/options-arg.rst
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
