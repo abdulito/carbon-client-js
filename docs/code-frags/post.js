@@ -7,7 +7,7 @@ var body = {
   msg: "Welcome to carbon-io!"
 }
 
-client.getEndpoint("hello").post(body, function(e, response) {
+client.getEndpoint("hello").post(body, function(e, res) {
   console.log("Response from /hello: ")
-  console.log(response.body)
+  console.log(res.body)
 })

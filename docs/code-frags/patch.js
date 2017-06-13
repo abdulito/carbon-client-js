@@ -8,7 +8,7 @@ client.getEndpoint("users").patch({
     "_id": "1234",
     "name": "bob"
   },
-  function(e, response) {
+  function(e, res) {
     console.log("Response from /users:")
-    console.log(response.body)
+    console.log(res.body)
   })

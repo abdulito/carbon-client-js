@@ -11,7 +11,7 @@ var options = {
 }
 
 // GET http://localhost:8888/hello?who=carbon
-client.getEndpoint("hello").get(options, function(e, response) {
+client.getEndpoint("hello").get(options, function(e, res) {
   console.log("Response from /hello: ")
-  console.log(response.body)
+  console.log(res.body)
 })
