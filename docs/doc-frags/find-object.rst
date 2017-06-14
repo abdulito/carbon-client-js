@@ -2,7 +2,7 @@
 findObject
 **********
 
-Supported calling forms for ``Collection.find()`` are as follows:
+Supported calling forms for ``Collection.findObject()`` are as follows:
 
 -  ``findObject(id, cb)``
 
