@@ -16,3 +16,9 @@ usersCollection.saveObject("123456",
     console.log(result)
   }
 )
+
+
+/* underlying HTTP call
+ * PUT http://localhost:8888/users/123456
+ * body: {_id: "123456",name: "joe",address: {city: "San Francisco",zipcode: 94401}}
+ */

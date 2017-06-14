@@ -10,3 +10,6 @@ usersCollection.findObject("123456", (function(e, obj) {
   console.log(obj)
 }))
 
+/* underlying HTTP call
+ * GET http://localhost:8888/users/123456
+ */

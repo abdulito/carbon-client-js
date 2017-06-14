@@ -15,3 +15,7 @@ usersCollection.find({name: "joe"}).toArray(function(e, data) {
   console.log("All users matching name 'joe'")
   console.log(data)
 })
+
+/* underlying HTTP call
+* GET http://localhost:8888/users?query={"name":"joe"}
+*/

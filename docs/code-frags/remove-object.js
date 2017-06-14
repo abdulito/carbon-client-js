@@ -8,3 +8,7 @@ usersCollection.removeObject( "123456",
     console.log(result)
   }
 )
+
+/* underlying HTTP call
+ * DELETE http://localhost:8888/users/123456
+ */

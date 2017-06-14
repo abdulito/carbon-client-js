@@ -10,3 +10,7 @@ usersCollection.remove({
     console.log(result)
   }
 )
+
+/* underlying HTTP call
+ * DELETE http://localhost:8888/users?query={"_id":"123456"}
+ */
