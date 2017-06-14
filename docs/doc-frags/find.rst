@@ -2,8 +2,8 @@
 find
 ****
 
-The ``find()`` method invokes a ``find`` operation on the service collection and returns a ``Cursor`` object that is
-used to iterate over results.
+``find()`` invokes a ``find`` operation on the service collection and returns a ``Cursor`` object that is
+used for iterating over results.
 
 ``find()`` supports the following calling forms
 

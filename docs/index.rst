@@ -4,7 +4,7 @@
 carbon-client-js
 ================
 
-``carbon-client-js`` is the Javascript client for Carbon.io services.
+``carbon-client-js`` is the JavaScript client for Carbon.io services.
 
 
 ------------
@@ -23,8 +23,8 @@ Download ``carbon-client.js`` and include carbon-client.js in your scripts and y
 
 Can carbon-client-js be installed with npm ?
 
-carbon-client-js is actually written in Node.js but has been exported to a pure Javascript library that can be used in a browser.
-So it can still be installed with npm, however, for Node.js, there is an extension for this client (:ref:`carbon-client-node <carbon-client-node>`) with more Node.js abilities.
+carbon-client-js is actually written in Node.js but has been exported to a pure JavaScript library that can be used in browsers.
+That being said, it can still be installed with npm, however, for Node.js, there is an extension for this client (:ref:`carbon-client-node <carbon-client-node>`) with more Node.js abilities.
 
 
 ---------------------
