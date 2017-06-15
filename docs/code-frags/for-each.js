@@ -7,7 +7,6 @@ var usersCollection = client.getCollection("users")
 var cursor = usersCollection.find()
 cursor.forEach(function(item) {
   console.log(item)
-
 }, function (e) {
   console.log("Finish!")
   if (e) {
