@@ -6,7 +6,6 @@ var client = new CarbonClient("http://localhost:8888")
 var options = {
   parameters: {
     who: "carbon"
-
   }
 }
 
