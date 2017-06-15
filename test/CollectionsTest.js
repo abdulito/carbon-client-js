@@ -149,21 +149,14 @@ __(function() {
       o({
         _type: testtube.Test,
         name: 'FindEachTest',
-        description: 'testing find.each()',
+        description: 'testing find.forEach()',
         doTest: function(ctx, done) {
-          var err = undefined
-          ctx.global.usersCollection.find().each(function(e, item) {
-            try {
-              assert(_.isNull(e))
-              if(!_.isNull(item)) {
-                assert(item.username === 'abdul' || item.username === 'bob')
-              }
-            } catch (e) {
-              err = e
-            }
-            if (!_.isNil(e) || _.isNull(item)) {
-              return done(err)
-            }
+          ctx.global.usersCollection.find().forEach(function(item) {
+            assert(item.username === 'abdul' || item.username === 'bob')
+
+          }, function(e) {
+            assert(_.isNull(e))
+            return done()
           })
         }
       }),
