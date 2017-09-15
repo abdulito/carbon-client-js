@@ -17,26 +17,12 @@ __(function() {
     /**********************************************************************
      * _type
      */
-    _type: testtube.Test,
+    _type: _o("./TestBase"),
 
     /**********************************************************************
      * name
      */
     name: "HttpMethodsTest",
-
-    /**********************************************************************
-     * setup
-     */
-    setup: function(ctx) {
-      ctx.global.testClient = require('./setup')
-    },
-
-    /**********************************************************************
-     * teardown
-     */
-    teardown: function(ctx) {
-      delete ctx.global.testClient
-    },
 
     /**********************************************************************
      * tests
@@ -48,7 +34,7 @@ __(function() {
         description: 'Get test',
         doTest: function(ctx, done) {
           ctx.global.testClient.getEndpoint("get-test").get(function(e, res) {
-            var err 
+            var err
             try {
               assert(_.isNull(e))
               assert(!_.isNull(res))
@@ -146,7 +132,6 @@ __(function() {
             try {
               assert(_.isNull(e))
               assert(!_.isNull(res))
-              assert.equal(res.body, "HEAD")
               assert.equal(res.statusCode, 200)
             } catch (e) {
               err = e
@@ -210,7 +195,7 @@ __(function() {
             done(err)
           })
         }
-      }),
+      })
     ]
   })
 })
