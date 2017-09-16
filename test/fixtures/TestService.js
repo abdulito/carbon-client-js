@@ -5,6 +5,26 @@ var carbond   = require('@carbon-io/carbond')
 
 
 
+// util functions
+
+/***************************************************************************************************
+ * sleep
+ * @param delay
+ * @param cb
+ */
+function sleep(delay, cb) {
+  setTimeout(cb, delay)
+}
+
+
+/***************************************************************************************************
+ * sleepSync
+ * @param delay
+ */
+function sleepSync(delay) {
+  sleep.sync(delay)
+}
+
 /***************************************************************************************************
  * ServiceForMongoDBCollectionTests
  */
@@ -80,6 +100,17 @@ module.exports = o({
       get: function(req, res) {
         res.setHeader('carbon-client', 'cool')
         return 'response headers'
+      }
+    }),
+
+    timeout: o({
+      _type: carbond.Endpoint,
+      get: function(req, res) {
+        // sleep for 5 seconds
+        sleepSync(5000)
+        return {
+          ok: 1
+        }
       }
     }),
 

@@ -25,7 +25,8 @@ __(function() {
     tests: [
       _o('./PathTest'),
       _o('./HttpMethodsTest'),
-      /*_o('./TimeoutTest'),
+      _o('./TimeoutTest')
+      /*
       _o('./AuthTest'),
       _o('./CollectionsTest'),
       _o('./ErrorTest')*/

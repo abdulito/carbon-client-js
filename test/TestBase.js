@@ -6,7 +6,9 @@ var testtube = require('@carbon-io/test-tube')
 var RestClient = require('../lib/RestClient')
 var _ = require('lodash')
 
-
+/*********************************************************************************************************************
+ * SEED DATA
+ */
 var SEED_DATA = {
   users: [
     {
@@ -52,6 +54,7 @@ module.exports = o.main({
    */
   teardown: function(ctx) {
     this.clearDatabase()
+    delete ctx.global.client
     this.service.stop()
   },
 
@@ -75,7 +78,7 @@ module.exports = o.main({
     })
   },
 
-  /*****************************************************************************
+  /*********************************************************************************************************************
    * clearDatabase
    */
   clearDatabase: function() {
