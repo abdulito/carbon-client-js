@@ -44,9 +44,11 @@ module.exports = o.main({
    * setup
    */
   setup: function(ctx) {
-    ctx.global.testClient = new RestClient('http://localhost:9088')
+    ctx.global.testServiceUrl = 'http://localhost:9088'
+    ctx.global.testClient = new RestClient(ctx.global.testServiceUrl)
     this.service.start()
-    this.initializeDatabase(this.service.db)
+    this.clearDatabase()
+    this.initializeDatabase()
   },
 
   /*********************************************************************************************************************
@@ -72,6 +74,7 @@ module.exports = o.main({
         try {
           c.insert(docs[i])
         } catch (e) {
+          console.log("IGNORED INSERT ERROR: " + e)
           // ignore
         }
       }

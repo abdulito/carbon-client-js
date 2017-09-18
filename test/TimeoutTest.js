@@ -1,5 +1,5 @@
 var assert = require('assert')
-var nock = require('nock')
+
 var _ = require('lodash')
 
 var __ = require('@carbon-io/fibers').__(module)
@@ -38,16 +38,13 @@ __(function() {
         doTest: function(ctx, done) {
           var then = Date.now()
           // create the client with a 3 second timeout
-          ctx.global.testClient.defaultOptions.timeout = 3000
+          ctx.global.testClient = new RestClient(ctx.global.testServiceUrl, {
+            timeout: 3000
+          })
 
           ctx.global.testClient.getEndpoint("timeout").get(function(e, res) {
             var err = undefined
             try {
-              if (Date.now() - then >= 5000) {
-                throw new testtube.errors.SkipTestError(
-                  'nock is broken, see https://github.com/node-nock/nock/issues/754 ' +
-                  'and https://github.com/node-nock/nock/pull/802')
-              }
               assert(!_.isNull(e))
               assert.equal(e.message, "ESOCKETTIMEDOUT")
             } catch (e) {
@@ -62,7 +59,7 @@ __(function() {
         name: 'NoTimeoutTest',
         description: 'testing /timeout with a 6 second timeout',
         doTest: function(ctx, done) {
-          ctx.global.testClient.defaultOptions.timeout = undefined
+          ctx.global.client = new RestClient(ctx.global.testServiceUrl)
           ctx.global.testClient.getEndpoint("timeout").get({timeout: 6000}, function(e, res) {
             var err = undefined
             try {

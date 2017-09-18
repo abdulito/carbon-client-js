@@ -34,7 +34,7 @@ module.exports = o({
   port: 9088,
   verbosity: 'warn',
 
-  dbUri:"mongodb://localhost:27017/carbon-client-node-tests",
+  dbUri:"mongodb://localhost:27017/carbon-client-tests",
 
   endpoints: {
 
@@ -114,7 +114,6 @@ module.exports = o({
       }
     }),
 
-
     // users collection
     users: o({
       _type: carbond.mongodb.MongoDBCollection,
@@ -122,6 +121,9 @@ module.exports = o({
       enabled: {
         '*': true
       },
+
+      idGenerator: o({ _type: carbond.ObjectIdGenerator, generateStrings: true }),
+
       schema: {
         type: 'object',
         properties: {
@@ -130,6 +132,41 @@ module.exports = o({
         },
         additionalProperties: true,
         required: ['_id', 'username']
+      }
+    }),
+    userlite: o({
+      _type: carbond.mongodb.MongoDBCollection,
+      collection: 'users',
+      enabled: {
+        '*': true
+      },
+      insertConfig: {
+        returnsInsertedObjects: false
+      },
+
+      insertObjectConfig: {
+        returnsInsertedObject: false
+      },
+
+      idGenerator: o({ _type: carbond.ObjectIdGenerator, generateStrings: true }),
+
+      schema: {
+        type: 'object',
+        properties: {
+          _id: {type: 'string'},
+          username: {type: 'string'}
+        },
+        additionalProperties: true,
+        required: ['_id', 'username']
+      }
+    }),
+
+
+    "error": o({
+      _type: carbond.Endpoint,
+      get: function(req, res) {
+        res.status(500)
+        return "ERROR"
       }
     })
   }

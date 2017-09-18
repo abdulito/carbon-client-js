@@ -25,11 +25,11 @@ __(function() {
     tests: [
       _o('./PathTest'),
       _o('./HttpMethodsTest'),
-      _o('./TimeoutTest')
-      /*
-      _o('./AuthTest'),
+      _o('./TimeoutTest'),
+      _o('./HeaderAuthTest'),
+      _o('./QueryAuthTest'),
       _o('./CollectionsTest'),
-      _o('./ErrorTest')*/
+      _o('./ErrorTest')
     ]
   })
 })

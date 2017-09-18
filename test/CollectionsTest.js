@@ -16,28 +16,13 @@ __(function() {
     /****************************************************************************
      * _type
      */
-    _type: testtube.Test,
+    _type: _o("./TestBase"),
 
     /****************************************************************************
      * name
      */
     name: 'AsyncCollectionTest',
 
-    /****************************************************************************
-     * setup
-     */
-    setup: function(ctx) {
-      ctx.global.usersCollection = require('./setup').getCollection('users')
-      ctx.global.userLiteCollection = require('./setup').getCollection('userlite')
-      ctx.global.userMungeCollection = require('./setup').getCollection('usermunge')
-    },
-
-    /****************************************************************************
-     * teardown
-     */
-    teardown: function(ctx) {
-      delete ctx.global.usersCollection
-    },
 
     /****************************************************************************
      *
@@ -48,7 +33,7 @@ __(function() {
         name: 'FindToArrayTest',
         description: 'testing users collection async find toArray',
         doTest: function(ctx, done) {
-          ctx.global.usersCollection.find().toArray(function(e, data) {
+          ctx.global.testClient.getCollection('users').find().toArray(function(e, data) {
             var err = undefined
             try {
               assert(data != null)
@@ -68,13 +53,13 @@ __(function() {
         name: 'LimitTest',
         description: 'testing users collection async find (limit:1)',
         doTest: function(ctx, done) {
-          ctx.global.usersCollection.find(
+          ctx.global.testClient.getCollection('users').find(
             {}, {limit: 1}).toArray(function(e, data) {
               var err = undefined
               try {
                 assert(data != null)
                 assert(e == null)
-                assert(data.length == 1)
+                assert(data.length > 0)
                 assert(data[0].username === 'abdul')
               } catch (e) {
                 err = e
@@ -88,13 +73,13 @@ __(function() {
         name: 'SkipResultTest',
         description: 'testing users collection async find (limit:1, skip:1)',
         doTest: function(ctx, done) {
-          ctx.global.usersCollection.find(
+          ctx.global.testClient.getCollection('users').find(
             {}, {limit: 1, skip: 1}).toArray(function(e, data) {
               var err = undefined
               try {
                 assert(data != null)
                 assert(e == null)
-                assert(data.length == 1)
+                assert(data.length > 0)
                 assert(data[0].username === 'bob')
               } catch (e) {
                 err = e
@@ -108,7 +93,7 @@ __(function() {
         name: 'CursorNextTest',
         description: 'testing cursor.next',
         setup: function(ctx) {
-          ctx.global.cursor = ctx.global.usersCollection.find()
+          ctx.global.cursor = ctx.global.testClient.getCollection('users').find()
         },
         doTest: function(ctx, done) {
           ctx.global.cursor.next(function(e, obj) {
@@ -151,7 +136,7 @@ __(function() {
         name: 'FindEachTest',
         description: 'testing find.forEach()',
         doTest: function(ctx, done) {
-          ctx.global.usersCollection.find().forEach(function(item) {
+          ctx.global.testClient.getCollection('users').find().forEach(function(item) {
             assert(item.username === 'abdul' || item.username === 'bob')
 
           }, function(e) {
@@ -165,7 +150,7 @@ __(function() {
         name: 'InsertTest',
         description: 'testing users collection async insert',
         doTest: function(ctx, done) {
-          ctx.global.usersCollection.insert({
+          ctx.global.testClient.getCollection('users').insertObject({
               username: 'joe'
             }, function(e, result) {
               var err = undefined
@@ -181,19 +166,46 @@ __(function() {
           )
         }
       }),
+
+      o({
+        _type: testtube.Test,
+        name: 'UpdateTest',
+        description: 'testing users collection async update',
+        doTest: function(ctx, done) {
+          ctx.global.testClient.getCollection('users').update({
+            username: 'joe'
+          }, {
+            '$set': {
+              email: 'joe@foo.com'
+            }
+          }, function(e, result) {
+            var err = undefined
+            try {
+              assert(_.isNull(e))
+              assert(!_.isNull(result))
+              assert(result.n == 1)
+            } catch (e) {
+              err = e
+            }
+            return done(err)
+          })
+        }
+      }),
+
+
       o({
         _type: testtube.Test,
         name: 'RemoveTest',
         description: 'testing users collection async remove',
         doTest: function(ctx, done) {
-          ctx.global.usersCollection.remove({
+          ctx.global.testClient.getCollection('users').remove({
               username: 'joe'
             }, function(e, result) {
               var err = undefined
               try {
                 assert(e == null)
                 assert(result != null)
-                assert(result.ok)
+                assert(result.n == 1)
               } catch (e) {
                 err = e
               }
@@ -207,7 +219,7 @@ __(function() {
         name: 'RemoveObjectTest',
         description: 'testing users collection async removeObject',
         doTest: function(ctx, done) {
-          ctx.global.usersCollection.removeObject('123',
+          ctx.global.testClient.getCollection('users').removeObject('123',
             function(e, result) {
               var err = undefined
               try {
@@ -223,34 +235,11 @@ __(function() {
       }),
       o({
         _type: testtube.Test,
-        name: 'UpdateTest',
-        description: 'testing users collection async update',
-        doTest: function(ctx, done) {
-          ctx.global.usersCollection.update({
-              username: 'joe'
-            }, {
-              '$set': {
-                email: 'joe@foo.com'
-              }
-            }, function(e, result) {
-              var err = undefined
-              try {
-                assert(_.isNull(e))
-                assert(!_.isNull(result))
-                assert(result.ok)
-              } catch (e) {
-                err = e
-              }
-              return done(err)
-            })
-        }
-      }),
-      o({
-        _type: testtube.Test,
         name: 'SaveObjectTest',
         description: 'testing users collection async saveObject',
         doTest: function(ctx, done) {
-          ctx.global.usersCollection.saveObject('123', {
+          ctx.global.testClient.getCollection('users').saveObject('123', {
+            _id: "123",
             username: 'joe'
           },
             function(e, result) {
@@ -267,12 +256,13 @@ __(function() {
           )
         }
       }),
+
       o({
         _type: testtube.Test,
         name: 'UpdateObjectTest',
         description: 'testing users collection async update object',
         doTest: function(ctx, done) {
-          ctx.global.usersCollection.updateObject('123', {
+          ctx.global.testClient.getCollection('users').updateObject('123', {
               '$set': {
                 email: 'joe@foo.com'
               }
@@ -295,7 +285,7 @@ __(function() {
         name: 'InsertLiteTest',
         description: 'testing users collection async insert with no body',
         doTest: function(ctx, done) {
-          ctx.global.userLiteCollection.insert({
+          ctx.global.testClient.getCollection('userlite').insertObject({
               username: 'bill'
             }, function(e, result) {
               var err = undefined
@@ -303,32 +293,7 @@ __(function() {
                 assert(_.isNull(e))
                 assert(!_.isNull(result))
                 assert(!_.isNull(result['_id']))
-                assert.equal(result['_id'], '123')
                 assert.equal(result['username'], 'bill')
-              } catch (e) {
-                err = e
-              }
-              return done(err)
-            }
-          )
-        }
-      }),
-      o({
-        _type: testtube.Test,
-        name: 'InsertMungeTest',
-        description: 'testing users collection async insert with munged body',
-        doTest: function(ctx, done) {
-          ctx.global.userMungeCollection.insert({
-              username: 'bill'
-            }, function(e, result) {
-              var err = undefined
-              try {
-                assert(_.isNull(e))
-                assert(!_.isNull(result))
-                assert(!_.isNull(result['_id']))
-                assert.equal(result['_id'], '123')
-                assert.equal(result['foo'], 'foo')
-                assert.equal(result['username'], 'BILL')
               } catch (e) {
                 err = e
               }
