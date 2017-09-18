@@ -12,9 +12,7 @@
   },
   "main": "./lib/RestClient.js",
   "directories": {
-    "lib": "./lib",
-    "test": "./test",
-    "bin": "./bin"
+    "lib": "./lib"
   },
   "engines": {
     "node": ">=4.0.0"
