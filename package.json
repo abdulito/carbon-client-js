@@ -29,8 +29,7 @@
     "request": ">= 0.4.12",
     "@carbon-io/ejson": "0.5.x",
     "@carbon-io/http-errors": "0.1.x",
-    "lodash": "4.16.x",
-    "nock": "8.2.0"
+    "lodash": "4.16.x"
   },
   "scripts": {
     "test": "node test"
