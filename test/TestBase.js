@@ -36,16 +36,23 @@ module.exports = o.main({
   /*********************************************************************************************************************
    * name
    */
-  name: "CarbonClient node tests",
+  name: "CarbonClient tests",
 
+  /*********************************************************************************************************************
+   * service
+   */
   service: _o('./fixtures/TestService'),
 
+  /*********************************************************************************************************************
+   * clientClass
+   */
+  clientClass: RestClient,
   /*********************************************************************************************************************
    * setup
    */
   setup: function(ctx) {
     ctx.global.testServiceUrl = 'http://localhost:9088'
-    ctx.global.testClient = new RestClient(ctx.global.testServiceUrl)
+    ctx.global.testClient = new this.clientClass(ctx.global.testServiceUrl)
     this.service.start()
     this.clearDatabase()
     this.initializeDatabase()
