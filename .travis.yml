@@ -16,6 +16,10 @@ addons:
     packages:
       - g++-4.8
       - build-essential
+      - mongodb-org-server
+
+before_script:
+  - sleep 15
 
 # Handle git submodules yourself
 git:
@@ -23,5 +27,4 @@ git:
 # Use sed to replace the SSH URL with the public URL, then initialize submodules
 before_install:
     - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
-    - git submodule sync
-    - until git submodule update --init --recursive; do find . -iregex '.*\.gitmodules$' -exec sed -i 's/git@github.com:/https:\/\/github.com\//' "{}" \; ; git submodule foreach --recursive 'git submodule sync'; done
+    - git submodule update --init --recursive
