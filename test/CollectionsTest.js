@@ -150,8 +150,31 @@ __(function() {
         name: 'InsertTest',
         description: 'testing users collection async insert',
         doTest: function(ctx, done) {
+          ctx.global.testClient.getCollection('users').insert([{
+              username: 'tim'
+            }], function(e, result) {
+              var err = undefined
+              try {
+                assert(_.isNull(e))
+                assert(!_.isNull(result))
+                assert(_.isArray(result))
+                assert(!_.isNull(result[0]['_id']))
+              } catch (e) {
+                err = e
+              }
+              return done(err)
+            }
+          )
+        }
+      }),
+
+      o({
+        _type: testtube.Test,
+        name: 'InsertObjectTest',
+        description: 'testing users collection async insertObject',
+        doTest: function(ctx, done) {
           ctx.global.testClient.getCollection('users').insertObject({
-              username: 'joe'
+              username: 'chris'
             }, function(e, result) {
               var err = undefined
               try {
@@ -173,10 +196,10 @@ __(function() {
         description: 'testing users collection async update',
         doTest: function(ctx, done) {
           ctx.global.testClient.getCollection('users').update({
-            username: 'joe'
+            username: 'abdul'
           }, {
             '$set': {
-              email: 'joe@foo.com'
+              lastLogin: new Date()
             }
           }, function(e, result) {
             var err = undefined
@@ -199,7 +222,7 @@ __(function() {
         description: 'testing users collection async remove',
         doTest: function(ctx, done) {
           ctx.global.testClient.getCollection('users').remove({
-              username: 'joe'
+              username: 'bob'
             }, function(e, result) {
               var err = undefined
               try {
@@ -233,6 +256,32 @@ __(function() {
           )
         }
       }),
+
+      o({
+        _type: testtube.Test,
+        name: 'SaveOTest',
+        description: 'testing users collection async save',
+        doTest: function(ctx, done) {
+          ctx.global.testClient.getCollection('users').save([{
+              _id: "123",
+              username: 'joe'
+            }],
+            function(e, result) {
+              var err = undefined
+              try {
+                assert(_.isNull(e))
+                assert(!_.isNull(result))
+                assert(_.isArray(result))
+                assert.equal(result[0]._id, '123')
+              } catch (e) {
+                err = e
+              }
+              return done(err)
+            }
+          )
+        }
+      }),
+
       o({
         _type: testtube.Test,
         name: 'SaveObjectTest',
