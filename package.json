@@ -22,7 +22,7 @@
     "@carbon-io/bond": "0.6.x",
     "@carbon-io/fibers": "0.7.x",
     "@carbon-io/test-tube": "0.6.x",
-    "@carbon-io/carbond": "carbon-io/carbond.git#collection-overhaul"
+    "@carbon-io/carbond": "https://github.com/carbon-io/carbond/archive/collection-overhaul.tar.gz"
   },
   "dependencies": {
     "request": ">= 0.4.12",
