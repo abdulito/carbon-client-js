@@ -75,9 +75,15 @@ Browser Compatibility
 
 .. include:: doc-frags/find-object.rst
 
+.. include:: doc-frags/insert.rst
+
+.. include:: doc-frags/insert-object.rst
+
 .. include:: doc-frags/update.rst
 
 .. include:: doc-frags/update-object.rst
+
+.. include:: doc-frags/save.rst
 
 .. include:: doc-frags/save-object.rst
 
