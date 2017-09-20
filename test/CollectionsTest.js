@@ -329,9 +329,10 @@ __(function() {
         }
       }),
 
-      /**** IMPORTANT
+      /*
+       * IMPORTANT
        *  the save test was put last since save() replaces the whole collection.
-       * ******/
+       */
       o({
         _type: testtube.Test,
         name: 'SaveOTest',
