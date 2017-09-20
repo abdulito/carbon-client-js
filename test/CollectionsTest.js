@@ -218,6 +218,54 @@ __(function() {
 
       o({
         _type: testtube.Test,
+        name: 'SaveObjectTest',
+        description: 'testing users collection async saveObject',
+        doTest: function(ctx, done) {
+          ctx.global.testClient.getCollection('users').saveObject('777', {
+            _id: "777",
+            username: 'joe'
+          },
+            function(e, result) {
+              var err = undefined
+              try {
+                assert(_.isNull(e))
+                assert(!_.isNull(result))
+                assert.equal(result._id, '777')
+              } catch (e) {
+                err = e
+              }
+              return done(err)
+            }
+          )
+        }
+      }),
+
+      o({
+        _type: testtube.Test,
+        name: 'UpdateObjectTest',
+        description: 'testing users collection async update object',
+        doTest: function(ctx, done) {
+          ctx.global.testClient.getCollection('users').updateObject('123', {
+              '$set': {
+                lastLogin: new Date()
+              }
+            },
+            function(e, result) {
+              var err = undefined
+              try {
+                assert(_.isNull(e))
+                assert(_.isNull(result))
+              } catch (e) {
+                err = e
+              }
+              return done(err)
+            }
+          )
+        }
+      }),
+
+      o({
+        _type: testtube.Test,
         name: 'RemoveTest',
         description: 'testing users collection async remove',
         doTest: function(ctx, done) {
@@ -237,6 +285,7 @@ __(function() {
           )
         }
       }),
+
       o({
         _type: testtube.Test,
         name: 'RemoveObjectTest',
@@ -259,78 +308,6 @@ __(function() {
 
       o({
         _type: testtube.Test,
-        name: 'SaveOTest',
-        description: 'testing users collection async save',
-        doTest: function(ctx, done) {
-          ctx.global.testClient.getCollection('users').save([{
-              _id: "123",
-              username: 'joe'
-            }],
-            function(e, result) {
-              var err = undefined
-              try {
-                assert(_.isNull(e))
-                assert(!_.isNull(result))
-                assert(_.isArray(result))
-                assert.equal(result[0]._id, '123')
-              } catch (e) {
-                err = e
-              }
-              return done(err)
-            }
-          )
-        }
-      }),
-
-      o({
-        _type: testtube.Test,
-        name: 'SaveObjectTest',
-        description: 'testing users collection async saveObject',
-        doTest: function(ctx, done) {
-          ctx.global.testClient.getCollection('users').saveObject('123', {
-            _id: "123",
-            username: 'joe'
-          },
-            function(e, result) {
-              var err = undefined
-              try {
-                assert(_.isNull(e))
-                assert(!_.isNull(result))
-                assert.equal(result._id, '123')
-              } catch (e) {
-                err = e
-              }
-              return done(err)
-            }
-          )
-        }
-      }),
-
-      o({
-        _type: testtube.Test,
-        name: 'UpdateObjectTest',
-        description: 'testing users collection async update object',
-        doTest: function(ctx, done) {
-          ctx.global.testClient.getCollection('users').updateObject('123', {
-              '$set': {
-                email: 'joe@foo.com'
-              }
-            },
-            function(e, result) {
-              var err = undefined
-              try {
-                assert(_.isNull(e))
-                assert(_.isNull(result))
-              } catch (e) {
-                err = e
-              }
-              return done(err)
-            }
-          )
-        }
-      }),
-      o({
-        _type: testtube.Test,
         name: 'InsertLiteTest',
         description: 'testing users collection async insert with no body',
         doTest: function(ctx, done) {
@@ -350,7 +327,38 @@ __(function() {
             }
           )
         }
-      })
+      }),
+
+      /**** IMPORTANT
+       *  the save test was put last since save() replaces the whole collection.
+       * ******/
+      o({
+        _type: testtube.Test,
+        name: 'SaveOTest',
+        description: 'testing users collection async save',
+        doTest: function(ctx, done) {
+          ctx.global.testClient.getCollection('users').save([{
+              _id: "777",
+              username: 'joe'
+            }],
+            function(e, result) {
+              var err = undefined
+              try {
+                assert(_.isNull(e))
+                assert(!_.isNull(result))
+                assert(_.isArray(result))
+                assert(result.length == 1)
+                assert.equal(result[0]._id, '777')
+              } catch (e) {
+                err = e
+              }
+              return done(err)
+            }
+          )
+        }
+      }),
+
+
     ]
   })
 })
