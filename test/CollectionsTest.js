@@ -74,7 +74,7 @@ __(function() {
         description: 'testing users collection async find (limit:1, skip:1)',
         doTest: function(ctx, done) {
           ctx.global.testClient.getCollection('users').find(
-            {}, {limit: 1, skip: 1}).toArray(function(e, data) {
+            {}, {parameters:{limit: 1, skip: 1}}).toArray(function(e, data) {
               var err = undefined
               try {
                 assert(data != null)
