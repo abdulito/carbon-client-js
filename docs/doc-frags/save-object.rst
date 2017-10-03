@@ -7,6 +7,7 @@ Replace/create object with the specified ``id``. Returns true if the object did 
 Supported calling forms for ``Collection.saveObject()`` are as follows:
 
 -  ``saveObject(id, obj, cb)``
+-  ``saveObject(id, obj, options, cb)``
 
 .. literalinclude:: code-frags/save-object.js
     :language: javascript
