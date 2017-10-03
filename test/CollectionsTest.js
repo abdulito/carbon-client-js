@@ -54,12 +54,12 @@ __(function() {
         description: 'testing users collection async find (limit:1)',
         doTest: function(ctx, done) {
           ctx.global.testClient.getCollection('users').find(
-            {}, {limit: 1}).toArray(function(e, data) {
+            {}, {parameters: {limit: 1}}).toArray(function(e, data) {
               var err = undefined
               try {
                 assert(data != null)
                 assert(e == null)
-                assert(data.length > 0)
+                assert(data.length == 1)
                 assert(data[0].username === 'abdul')
               } catch (e) {
                 err = e
@@ -79,13 +79,33 @@ __(function() {
               try {
                 assert(data != null)
                 assert(e == null)
-                assert(data.length > 0)
+                assert(data.length == 1)
                 assert(data[0].username === 'bob')
               } catch (e) {
                 err = e
               }
               return done(err)
             })
+        }
+      }),
+      o({
+        _type: testtube.Test,
+        name: 'ProjectionResultTest',
+        description: 'testing users collection async find (projection)',
+        doTest: function(ctx, done) {
+          ctx.global.testClient.getCollection('users').find(
+            {}, {parameters:{projection: {_id: 1, username: 1}, limit:1}}).toArray(function(e, data) {
+            var err = undefined
+            try {
+              assert(data != null)
+              assert(e == null)
+              assert(data.length == 1)
+              assert(_.keys(data[0]).length == 2)
+            } catch (e) {
+              err = e
+            }
+            return done(err)
+          })
         }
       }),
       o({
