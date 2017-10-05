@@ -53,7 +53,7 @@ __(function() {
         name: 'LimitTest',
         description: 'testing users collection async find (limit:1)',
         doTest: function(ctx, done) {
-          ctx.global.testClient.getCollection('users').find({parameters: {limit: 1}}).toArray(function(e, data) {
+          ctx.global.testClient.getCollection('users', {paginated: true}).find().limit(1).toArray(function(e, data) {
               var err = undefined
               try {
                 assert(data != null)
@@ -72,9 +72,8 @@ __(function() {
         name: 'SkipResultTest',
         description: 'testing users collection async find (limit:1, skip:1)',
         doTest: function(ctx, done) {
-          ctx.global.testClient.getCollection('users').find({
-            parameters:{limit: 1, skip: 1}
-          }).toArray(function(e, data) {
+          ctx.global.testClient.getCollection('users', {paginated: true}).find().skip(1).limit(1).toArray(
+            function(e, data) {
               var err = undefined
               try {
                 assert(data != null)
@@ -93,10 +92,10 @@ __(function() {
         name: 'ProjectionResultTest',
         description: 'testing users collection async find (projection)',
         doTest: function(ctx, done) {
-          ctx.global.testClient.getCollection('users').find({
+          ctx.global.testClient.getCollection('users', {paginated: true}).find({
             parameters: {
-              projection: {_id: 1, username: 1},
-              limit:1}}).toArray(function(e, data) {
+              projection: {_id: 1, username: 1}}
+          }).limit(1).toArray(function(e, data) {
             var err = undefined
             try {
               assert(data != null)
