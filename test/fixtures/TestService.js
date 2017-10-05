@@ -140,13 +140,6 @@ module.exports = o({
       enabled: {
         '*': true
       },
-      insertConfig: {
-        returnsInsertedObjects: false
-      },
-
-      insertObjectConfig: {
-        returnsInsertedObject: false
-      },
 
       idGenerator: o({ _type: carbond.ObjectIdGenerator, generateStrings: true }),
 
