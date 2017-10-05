@@ -218,10 +218,14 @@ __(function() {
         description: 'testing users collection async update',
         doTest: function(ctx, done) {
           ctx.global.testClient.getCollection('users').update({
-            username: 'abdul'
-          }, {
             '$set': {
               lastLogin: new Date()
+            }
+          }, {
+            parameters: {
+              query: {
+                username: 'abdul'
+              }
             }
           }, function(e, result) {
             var err = undefined
@@ -292,8 +296,11 @@ __(function() {
         description: 'testing users collection async remove',
         doTest: function(ctx, done) {
           ctx.global.testClient.getCollection('users').remove({
-              username: 'bob'
-            }, function(e, result) {
+            parameters: {
+              query: {
+                username: 'bob'
+              }
+            }}, function(e, result) {
               var err = undefined
               try {
                 assert(e == null)
