@@ -21,8 +21,14 @@ var SEED_DATA = {
       username: 'bob',
       email: 'bob@test.test'
     }
-  ]
+  ],
+  items: []
 }
+
+for (var i = 1; i <= 300; i++) {
+  SEED_DATA.items.push({itemNumber: i})
+}
+
 /***********************************************************************************************************************
  * Base class for CarbonClient tests
  */

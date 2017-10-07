@@ -29,6 +29,7 @@ __(function() {
       _o('./HeaderAuthTest'),
       _o('./QueryAuthTest'),
       _o('./CollectionsTest'),
+      _o('./CursorsTest'),
       _o('./ErrorTest')
     ]
   })
