@@ -53,6 +53,113 @@ __(function() {
           })
         }
       }),
+
+      o({
+        _type: testtube.Test,
+        name: 'NoPaginationSkipTest',
+        description: 'testing skip with non paginated collection',
+        doTest: function(ctx, done) {
+          var ex = null
+          var err = undefined
+
+          try {
+
+            try {
+              // test that skip is not allowed with non-paginated collections
+              var cursor = ctx.global.testClient.getCollection('items', {paginated: false}).find().skip()
+            } catch(e) {
+              ex = e
+            }
+            assert(ex != null)
+          } catch (e) {
+            err = e
+          }
+          return done(err)
+        }
+      }),
+
+      o({
+        _type: testtube.Test,
+        name: 'NoPaginationSkipParamTest',
+        description: 'testing skip param with non paginated collection',
+        doTest: function(ctx, done) {
+          var ex = null
+          var err = undefined
+
+          try {
+
+            try {
+              // test that skip is not allowed with non-paginated collections
+              var cursor = ctx.global.testClient.getCollection('items', {paginated: false}).find({
+                parameters: {
+                  skip: 1
+                }
+              })
+            } catch(e) {
+              ex = e
+            }
+            assert(ex != null)
+          } catch (e) {
+            err = e
+          }
+          return done(err)
+        }
+      }),
+
+      o({
+        _type: testtube.Test,
+        name: 'NoPaginationLimitParamTest',
+        description: 'testing limit param with non paginated collection',
+        doTest: function(ctx, done) {
+          var ex = null
+          var err = undefined
+
+          try {
+
+            try {
+              // test that skip is not allowed with non-paginated collections
+              var cursor = ctx.global.testClient.getCollection('items', {paginated: false}).find({
+                parameters: {
+                  limit: 1
+                }
+              })
+            } catch(e) {
+              ex = e
+            }
+            assert(ex != null)
+          } catch (e) {
+            err = e
+          }
+          return done(err)
+        }
+      }),
+
+
+
+      o({
+        _type: testtube.Test,
+        name: 'NoPaginationLimitTest',
+        description: 'testing limit with non paginated collection',
+        doTest: function(ctx, done) {
+          var ex = null
+          var err = undefined
+
+          try {
+
+            try {
+              // test that skip is not allowed with non-paginated collections
+              var cursor = ctx.global.testClient.getCollection('items', {paginated: false}).find().limit()
+            } catch(e) {
+              ex = e
+            }
+            assert(ex != null)
+          } catch (e) {
+            err = e
+          }
+          return done(err)
+        }
+      }),
+
       o({
         _type: testtube.Test,
         name: 'Cursor buffer',
