@@ -176,6 +176,27 @@ module.exports = o({
       }
     }),
 
+    "items-large": o({
+      _type: carbond.mongodb.MongoDBCollection,
+      collection: 'items',
+      enabled: {
+        '*': true
+      },
+
+      findConfig: {
+        maxPageSize: 150
+      },
+
+      schema: {
+        type: 'object',
+        properties: {
+          _id: {type: 'ObjectId'},
+          itemNumber: {type: 'integer'}
+        },
+        required: ['_id']
+      }
+    }),
+
     "error": o({
       _type: carbond.Endpoint,
       get: function(req, res) {

@@ -314,7 +314,6 @@ __(function() {
         }
       }),
 
-
       o({
         _type: testtube.Test,
         name: 'SmallSkipTest',
@@ -327,7 +326,7 @@ __(function() {
             try {
               assert(data != null)
               assert(e == null)
-              assert(data.length == 200)
+              assert.equal(data.length, 200)
 
             } catch (e) {
               err = e
@@ -337,7 +336,6 @@ __(function() {
           })
         }
       }),
-
 
       o({
         _type: testtube.Test,
@@ -360,9 +358,30 @@ __(function() {
 
           })
         }
+      }),
+
+      o({
+        _type: testtube.Test,
+        name: 'SmallBatchSizeTest',
+        description: 'testing small custom limit',
+        doTest: function(ctx, done) {
+          var cursor = ctx.global.testClient.getCollection('items-large', {paginated: true}).find().limit(400)
+
+          cursor.toArray(function(e, data) {
+            var err = undefined
+            try {
+              assert(data != null)
+              assert(e == null)
+              assert.equal(data.length, 300)
+
+            } catch (e) {
+              err = e
+            }
+            return done(err)
+
+          })
+        }
       })
-
-
 
     ]
   })
