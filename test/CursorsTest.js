@@ -43,7 +43,7 @@ __(function() {
               assert(e == null)
 
               // since the collection is not paginated, we only get what the collection returns from the first fetch
-              assert(data.length == 50)
+              assert.equal(data.length, 50)
 
             } catch (e) {
               err = e
@@ -80,64 +80,6 @@ __(function() {
 
       o({
         _type: testtube.Test,
-        name: 'NoPaginationSkipParamTest',
-        description: 'testing skip param with non paginated collection',
-        doTest: function(ctx, done) {
-          var ex = null
-          var err = undefined
-
-          try {
-
-            try {
-              // test that skip is not allowed with non-paginated collections
-              var cursor = ctx.global.testClient.getCollection('items', {paginated: false}).find({
-                parameters: {
-                  skip: 1
-                }
-              })
-            } catch(e) {
-              ex = e
-            }
-            assert(ex != null)
-          } catch (e) {
-            err = e
-          }
-          return done(err)
-        }
-      }),
-
-      o({
-        _type: testtube.Test,
-        name: 'NoPaginationLimitParamTest',
-        description: 'testing limit param with non paginated collection',
-        doTest: function(ctx, done) {
-          var ex = null
-          var err = undefined
-
-          try {
-
-            try {
-              // test that skip is not allowed with non-paginated collections
-              var cursor = ctx.global.testClient.getCollection('items', {paginated: false}).find({
-                parameters: {
-                  limit: 1
-                }
-              })
-            } catch(e) {
-              ex = e
-            }
-            assert(ex != null)
-          } catch (e) {
-            err = e
-          }
-          return done(err)
-        }
-      }),
-
-
-
-      o({
-        _type: testtube.Test,
         name: 'NoPaginationLimitTest',
         description: 'testing limit with non paginated collection',
         doTest: function(ctx, done) {
@@ -148,7 +90,7 @@ __(function() {
 
             try {
               // test that skip is not allowed with non-paginated collections
-              var cursor = ctx.global.testClient.getCollection('items', {paginated: false}).find().limit()
+              var cursor = ctx.global.testClient.getCollection('items', {paginated: false}).find().limit(10)
             } catch(e) {
               ex = e
             }
@@ -174,7 +116,7 @@ __(function() {
               assert(cursor.items != null)
               assert(e == null)
               // confirm server-side collection has a max of 50 items per page, although client has 100
-              assert(cursor.items.length == 50)
+              assert.equal(cursor.items.length, 50)
               // confirm that we still need more
               assert(cursor.needToGetMore())
 
@@ -200,7 +142,7 @@ __(function() {
           cursor.forEach(function(item) {
             count ++
             try {
-              assert(item.itemNumber == count)
+              assert.equal(item.itemNumber, count)
             } catch (e) {
               err = e
             }
@@ -210,7 +152,7 @@ __(function() {
 
             try {
               assert(e == null)
-              assert(count == 300)
+              assert.equal(count, 300)
 
             } catch (e) {
               err = e
@@ -233,7 +175,7 @@ __(function() {
             try {
               assert(data != null)
               assert(e == null)
-              assert(data.length == 300)
+              assert.equal(data.length, 300)
 
             } catch (e) {
               err = e
@@ -256,7 +198,7 @@ __(function() {
             try {
               assert(data != null)
               assert(e == null)
-              assert(data.length == 40)
+              assert.equal(data.length, 40)
 
             } catch (e) {
               err = e
@@ -279,7 +221,7 @@ __(function() {
             try {
               assert(data != null)
               assert(e == null)
-              assert(data.length == 110)
+              assert.equal(data.length, 110)
 
             } catch (e) {
               err = e
@@ -303,7 +245,7 @@ __(function() {
             try {
               assert(data != null)
               assert(e == null)
-              assert(data.length == 300)
+              assert.equal(data.length, 300)
 
             } catch (e) {
               err = e
@@ -349,7 +291,7 @@ __(function() {
             try {
               assert(data != null)
               assert(e == null)
-              assert(data.length == 0)
+              assert.equal(data.length, 0)
 
             } catch (e) {
               err = e
@@ -381,7 +323,128 @@ __(function() {
 
           })
         }
-      })
+      }),
+
+
+      o({
+        _type: testtube.Test,
+        name: 'LimitInCursorOptionsTest',
+        description: 'testing limit in cursor options',
+        doTest: function(ctx, done) {
+          var cursor = ctx.global.testClient.getCollection('items', {paginated: true}).find({limit: 40})
+
+          cursor.toArray(function(e, data) {
+            var err = undefined
+            try {
+              assert(data != null)
+              assert(e == null)
+              assert.equal(data.length, 40)
+
+            } catch (e) {
+              err = e
+            }
+            return done(err)
+
+          })
+        }
+      }),
+
+      o({
+        _type: testtube.Test,
+        name: 'LimitInCollectionOptionsTest',
+        description: 'testing limit in collection options',
+        doTest: function(ctx, done) {
+          var cursor = ctx.global.testClient.getCollection('items', {paginated: true, limit: 40}).find()
+
+          cursor.toArray(function(e, data) {
+            var err = undefined
+            try {
+              assert(data != null)
+              assert(e == null)
+              assert.equal(data.length, 40)
+
+            } catch (e) {
+              err = e
+            }
+            return done(err)
+
+          })
+        }
+      }),
+
+      o({
+        _type: testtube.Test,
+        name: 'SkipInCursorOptionsTest',
+        description: 'testing skip in cursor options',
+        doTest: function(ctx, done) {
+          var cursor = ctx.global.testClient.getCollection('items', {paginated: true}).find({skip: 60})
+
+          cursor.toArray(function(e, data) {
+            var err = undefined
+            try {
+              assert(data != null)
+              assert(e == null)
+              assert.equal(data.length, 240)
+
+            } catch (e) {
+              err = e
+            }
+            return done(err)
+
+          })
+        }
+      }),
+
+      o({
+        _type: testtube.Test,
+        name: 'SkipInCollectionOptionsTest',
+        description: 'testing skip in collection options',
+        doTest: function(ctx, done) {
+          var cursor = ctx.global.testClient.getCollection('items', {paginated: true, skip: 60}).find()
+
+          cursor.toArray(function(e, data) {
+            var err = undefined
+            try {
+              assert(data != null)
+              assert(e == null)
+              assert.equal(data.length, 240)
+
+            } catch (e) {
+              err = e
+            }
+            return done(err)
+
+          })
+        }
+      }),
+
+      o({
+        _type: testtube.Test,
+        name: 'CursorOptionsShadowTest',
+        description: 'testing options shadowing',
+        doTest: function(ctx, done) {
+          var cursor = ctx.global.testClient.getCollection('items', {paginated: true, skip: 60, limit: 10}).find(
+            {skip: 1, limit: 1})
+
+          cursor.toArray(function(e, data) {
+            var err = undefined
+            try {
+              assert(data != null)
+              assert(e == null)
+              assert.equal(data.length, 1)
+              assert.equal(cursor.options.skip, 1)
+              assert.equal(cursor.options.limit, 1)
+              assert.equal(data[0].itemNumber, 2)
+
+            } catch (e) {
+              err = e
+            }
+            return done(err)
+
+          })
+        }
+      }),
+
 
     ]
   })
