@@ -445,6 +445,58 @@ __(function() {
         }
       }),
 
+      o({
+        _type: testtube.Test,
+        name: 'DefaultBatchSizeTest',
+        description: 'testing default batch size',
+        doTest: function(ctx, done) {
+          var cursor = ctx.global.testClient.getCollection('items', {paginated: true}).find()
+
+          cursor.toArray(function(e, data) {
+            var err = undefined
+            try {
+              assert(data != null)
+              assert(e == null)
+              assert.equal(data.length, 300)
+              // default batch size is 100 but since max page size on the server is 50 it will change to 5
+              // after the first trip
+              // fetch trips = 300/50 + additional fetch that will return an empty set
+              assert.equal(cursor.totalFetchTrips, 7)
+
+            } catch (e) {
+              err = e
+            }
+            return done(err)
+
+          })
+        }
+      }),
+
+      o({
+        _type: testtube.Test,
+        name: 'CustomBatchSizeTest',
+        description: 'testing custom batch size',
+        doTest: function(ctx, done) {
+          var cursor = ctx.global.testClient.getCollection('items', {paginated: true, batchSize: 10}).find()
+
+          cursor.toArray(function(e, data) {
+            var err = undefined
+            try {
+              assert(data != null)
+              assert(e == null)
+              assert.equal(data.length, 300)
+              // fetch trips = 300/10 + additional fetch that will return an empty set
+              assert.equal(cursor.totalFetchTrips, 31)
+
+            } catch (e) {
+              err = e
+            }
+            return done(err)
+
+          })
+        }
+      }),
+
 
     ]
   })
