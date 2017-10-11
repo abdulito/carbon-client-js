@@ -184,7 +184,8 @@ module.exports = o({
       },
 
       findConfig: {
-        maxPageSize: 150
+        maxPageSize: 150,
+        pageSize: 150
       },
 
       schema: {

@@ -56,6 +56,31 @@ __(function() {
 
       o({
         _type: testtube.Test,
+        name: 'NoPaginationLargeTest',
+        description: 'testing non paginated collection (large)',
+        doTest: function(ctx, done) {
+          var cursor = ctx.global.testClient.getCollection('items-large').find()
+
+          cursor.toArray(function(e, data) {
+            var err = undefined
+            try {
+              assert(data != null)
+              assert(e == null)
+
+              // since the collection is not paginated, we only get what the collection returns from the first fetch
+              assert.equal(data.length, 150)
+
+            } catch (e) {
+              err = e
+            }
+            return done(err)
+
+          })
+        }
+      }),
+
+      o({
+        _type: testtube.Test,
         name: 'NoPaginationSkipTest',
         description: 'testing skip with non paginated collection',
         doTest: function(ctx, done) {
