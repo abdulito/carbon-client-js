@@ -376,29 +376,6 @@ __(function() {
 
       o({
         _type: testtube.Test,
-        name: 'LimitInCollectionOptionsTest',
-        description: 'testing limit in collection options',
-        doTest: function(ctx, done) {
-          var cursor = ctx.global.testClient.getCollection('items', {paginated: true, limit: 40}).find()
-
-          cursor.toArray(function(e, data) {
-            var err = undefined
-            try {
-              assert(data != null)
-              assert(e == null)
-              assert.equal(data.length, 40)
-
-            } catch (e) {
-              err = e
-            }
-            return done(err)
-
-          })
-        }
-      }),
-
-      o({
-        _type: testtube.Test,
         name: 'SkipInCursorOptionsTest',
         description: 'testing skip in cursor options',
         doTest: function(ctx, done) {
@@ -422,51 +399,20 @@ __(function() {
 
       o({
         _type: testtube.Test,
-        name: 'SkipInCollectionOptionsTest',
-        description: 'testing skip in collection options',
-        doTest: function(ctx, done) {
-          var cursor = ctx.global.testClient.getCollection('items', {paginated: true, skip: 60}).find()
-
-          cursor.toArray(function(e, data) {
-            var err = undefined
-            try {
-              assert(data != null)
-              assert(e == null)
-              assert.equal(data.length, 240)
-
-            } catch (e) {
-              err = e
-            }
-            return done(err)
-
-          })
-        }
-      }),
-
-      o({
-        _type: testtube.Test,
         name: 'CursorOptionsShadowTest',
         description: 'testing options shadowing',
         doTest: function(ctx, done) {
-          var cursor = ctx.global.testClient.getCollection('items', {paginated: true, skip: 60, limit: 10}).find(
-            {skip: 1, limit: 1})
-
-          cursor.toArray(function(e, data) {
-            var err = undefined
-            try {
-              assert(data != null)
-              assert(e == null)
-              assert.equal(data.length, 1)
-              assert.equal(cursor.options.skip, 1)
-              assert.equal(cursor.options.limit, 1)
-              assert.equal(data[0].itemNumber, 2)
-
-            } catch (e) {
-              err = e
-            }
-            return done(err)
-
+          var cursor = ctx.global.testClient.getCollection('items', {paginated: true, batchSize: 10}).find({
+            batchSize: 15
           })
+          var err = undefined
+          try {
+            assert.equal(cursor.options.batchSize, 15)
+
+          } catch (e) {
+            err = e
+          }
+          return done(err)
         }
       }),
 
