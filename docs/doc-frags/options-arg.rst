@@ -41,12 +41,14 @@ To set options at the client level, it is passed with the "options" constructor 
 Operation-level options
 ***********************
 
-For passing options at operation-level, it is passed with the "options" argument for each endpoint http method.
+For passing options at operation-level, it is passed with the "options" argument for each endpoint/collection method.
 
 .. code:: javascript
 
     //e.g
     endpoint.get(options, cb)
+
+    collection.find(options)
 
 **************
 Authentication

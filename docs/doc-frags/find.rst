@@ -14,3 +14,12 @@ used for iterating over results.
     :language: javascript
     :linenos:
     :lines: 6-
+
+In addition to globally supported options (See "Options argument section"), options argument for ``find`` support the following options:
+
+- ``skip``
+- ``limit``
+- ``batchSize``
+
+For more info on these options, please refer to the ``Cursors`` section.
+
