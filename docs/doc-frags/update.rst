@@ -6,8 +6,8 @@ Updates items matching specified ``query`` with  update object. Returns ``{"n": 
 
 Supported calling forms for ``Collection.update()`` are as follows:
 
--  ``update(query, obj, cb)``
--  ``update(query, obj, options, cb)```
+-  ``update(obj, cb)``
+-  ``update(obj, options, cb)```
 
 .. literalinclude:: code-frags/update.js
     :language: javascript

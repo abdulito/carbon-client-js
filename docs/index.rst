@@ -57,9 +57,29 @@ Browser Compatibility
 
 .. include:: doc-frags/delete.rst
 
-.. include:: doc-frags/collections-and-cursors-header.rst
+.. include:: doc-frags/collections-header.rst
+
+.. include:: doc-frags/insert.rst
 
 .. include:: doc-frags/find.rst
+
+.. include:: doc-frags/save.rst
+
+.. include:: doc-frags/update.rst
+
+.. include:: doc-frags/remove.rst
+
+.. include:: doc-frags/insert-object.rst
+
+.. include:: doc-frags/find-object.rst
+
+.. include:: doc-frags/save-object.rst
+
+.. include:: doc-frags/update-object.rst
+
+.. include:: doc-frags/remove-object.rst
+
+.. include:: doc-frags/cursors-header.rst
 
 .. include:: doc-frags/to-array.rst
 
@@ -68,28 +88,6 @@ Browser Compatibility
 .. include:: doc-frags/next.rst
 
 .. include:: doc-frags/skip-limit.rst
-
-.. include:: doc-frags/sort.rst
-
-.. include:: doc-frags/projection.rst
-
-.. include:: doc-frags/find-object.rst
-
-.. include:: doc-frags/insert.rst
-
-.. include:: doc-frags/insert-object.rst
-
-.. include:: doc-frags/update.rst
-
-.. include:: doc-frags/update-object.rst
-
-.. include:: doc-frags/save.rst
-
-.. include:: doc-frags/save-object.rst
-
-.. include:: doc-frags/remove.rst
-
-.. include:: doc-frags/remove-object.rst
 
 .. include:: doc-frags/error-handling.rst
 

@@ -10,8 +10,14 @@ usersCollection.find().toArray(function(e, data) {
   console.log(data)
 })
 
-// find by query
-usersCollection.find({name: "joe"}).toArray(function(e, data) {
+// find by query in options
+usersCollection.find({
+  parameters: {
+    query: {
+      name: "joe"
+    }
+  }
+}).toArray(function(e, data) {
   console.log("All users matching name 'joe'")
   console.log(data)
 })

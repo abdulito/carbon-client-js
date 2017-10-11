@@ -6,8 +6,8 @@ Removes items from the collection matching specified ``query``.
 
 Supported calling forms for ``Collection.remove()`` are as follows:
 
--  ``remove(query, cb)``
--  ``remove(query, options, cb)``
+-  ``remove(cb)``
+-  ``remove(options, cb)``
 
 .. literalinclude:: code-frags/remove.js
     :language: javascript

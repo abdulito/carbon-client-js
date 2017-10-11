@@ -7,8 +7,8 @@ used for iterating over results.
 
 ``find()`` supports the following calling forms
 
--  ``find(query)``
--  ``find(query, options)``
+-  ``find()``
+-  ``find(options)``
 
 .. literalinclude:: code-frags/find.js
     :language: javascript
