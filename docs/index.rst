@@ -89,6 +89,8 @@ Browser Compatibility
 
 .. include:: doc-frags/skip-limit.rst
 
+.. include:: doc-frags/batch-size.rst
+
 .. include:: doc-frags/error-handling.rst
 
 .. include:: doc-frags/endpoint-tree.rst

@@ -1,6 +1,6 @@
-**************
-Cursor.toArray
-**************
+*******
+toArray
+*******
 
 ``Cursor.toArray()`` exhausts the cursor and returns all results into an array of objects.
 
