@@ -10,7 +10,3 @@ Cursors
 - ``skip(val)`` (paginated collections only)
 - ``limit(val)`` (paginated collections only)
 - ``batchSize(val)`` (paginated collections only)
-
-*****************
-How does it work?
-*****************

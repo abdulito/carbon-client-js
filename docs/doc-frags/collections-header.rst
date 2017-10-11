@@ -34,3 +34,22 @@ Which results in the following tree of endpoint calls:
   - ``PUT`` which maps to ``Collection.saveObject``
   - ``PATCH`` which maps to ``updateObject``
   - ``DELETE`` which maps to ``removeObject``
+
+
+*************
+getCollection
+*************
+
+``getCollection()`` supports the following calling forms:
+
+-  ``getCollection(path)``
+-  ``getCollection(path, options)``
+
+``options`` argument allows the following options:
+
+- ``paginated``: Indicates if the collection should use pagination to fetch items. Pagination has to be supported by the server-side collection through the ``skip`` and ``limit`` params. See ``Cursors`` section for more info.
+
+.. literalinclude:: code-frags/get-collection.js
+    :language: javascript
+    :linenos:
+    :lines: 6-
