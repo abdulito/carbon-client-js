@@ -10,3 +10,6 @@ Cursors
 - ``skip(val)`` (paginated collections only)
 - ``limit(val)`` (paginated collections only)
 - ``batchSize(val)`` (paginated collections only)
+
+Since ``skip``, ``limit``, and ``batchSize`` are supported on the collection level (in ``getCollection(path, options)``),
+specifying them on the Cursor level will override the collection level ones.
