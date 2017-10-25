@@ -10,7 +10,7 @@ CarbonClient collection can be accessed by the ``client.getCollection(path, opti
 ``Collection`` class provides the following methods:
 
 - ``insert(objects, options, cb)``: issues a ``POST``  to ``/<collection>``
-- ``find(options)``: issues a ``GET`` to ``/<collection>``
+- ``find(options, cb)``: issues a ``GET`` to ``/<collection>``
 - ``save(objects, options, cb)``: issues a ``PUT``  to ``/<collection>``
 - ``update(update, options, cb)`: issues a ``GET``  to ``/<collection>``
 - ``remove(options, cb)``: issues a ``DELETE``  to ``/<collection>``
