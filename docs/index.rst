@@ -1,5 +1,3 @@
-.. _carbon-client:
-
 ================
 carbon-client-js
 ================
