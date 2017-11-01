@@ -1,6 +1,6 @@
-******************
+*********
 batchSize
-******************
+*********
 
 Paginated collections allow configuring ``batchSize`` for items fetched from the server-side collection.
 Default size is 100.

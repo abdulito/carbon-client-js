@@ -1,6 +1,6 @@
-****
+***
 put
-****
+***
 
 Supported calling forms for ``Endpoint.put()`` are as follows:
 
