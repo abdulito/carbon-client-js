@@ -7,6 +7,7 @@ Removes object with the specified ``id``. If the object does not exist then it r
 Supported calling forms for ``Collection.removeObject()`` are as follows:
 
 -  ``removeObject(id, cb)``
+-  ``removeObject(id, options, cb)``
 
 .. literalinclude:: code-frags/remove-object.js
     :language: javascript

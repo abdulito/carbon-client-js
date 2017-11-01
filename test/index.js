@@ -26,8 +26,10 @@ __(function() {
       _o('./PathTest'),
       _o('./HttpMethodsTest'),
       _o('./TimeoutTest'),
-      _o('./AuthTest'),
+      _o('./HeaderAuthTest'),
+      _o('./QueryAuthTest'),
       _o('./CollectionsTest'),
+      _o('./CursorsTest'),
       _o('./ErrorTest')
     ]
   })

@@ -7,10 +7,19 @@ used for iterating over results.
 
 ``find()`` supports the following calling forms
 
--  ``find(query)``
--  ``find(query, options)``
+-  ``find()``
+-  ``find(options)``
 
 .. literalinclude:: code-frags/find.js
     :language: javascript
     :linenos:
     :lines: 6-
+
+In addition to globally supported options (See "Options argument section"), options argument for ``find`` support the following options:
+
+- ``skip``
+- ``limit``
+- ``batchSize``
+
+For more info on these options, please refer to the ``Cursors`` section.
+

@@ -16,26 +16,20 @@ __(function() {
     /**********************************************************************
      * _type
      */
-    _type: testtube.Test,
+    _type: _o("./TestBase"),
 
     /**********************************************************************
      * name
      */
     name: 'ErrorTest',
 
-    /**********************************************************************
-     * setup
-     */
-    setup: function(ctx) {
-      ctx.local.testClient = require('./setup')
-    },
 
 
     /**********************************************************************
      *
      */
     doTest: function (ctx, done) {
-      ctx.local.testClient.getEndpoint('error').get(function (e, res) {
+      ctx.global.testClient.getEndpoint('error').get(function (e, res) {
         var err = undefined
         try {
           assert(!_.isNull(e))

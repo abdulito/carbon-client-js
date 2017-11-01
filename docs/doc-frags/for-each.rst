@@ -1,6 +1,6 @@
-**************
-Cursor.forEach
-**************
+*******
+forEach
+*******
 
 The ``Cursor.toArray()`` loads all results into a single array object
 which could be memory consuming. To avoid that, use the ``Cursor.forEach()`` method which takes

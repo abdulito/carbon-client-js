@@ -1,6 +1,6 @@
-***********
-Cursor.next
-***********
+****
+next
+****
 
 ``next()`` method moves the cursor once and returns the current item. If there are no more items then it will return ``null``.
 

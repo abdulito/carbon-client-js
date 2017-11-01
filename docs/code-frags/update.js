@@ -4,14 +4,16 @@ var client = new CarbonClient("http://localhost:8888")
 
 var usersCollection = client.getCollection("users")
 usersCollection.update({
-  "_id": "123456"
-},
-  {
     "$set": {
       "name": "jack"
     }
-  },
-  function(e, result) {
+  }, {
+    parameters: {
+      query: {
+        _id: "123456"
+      }
+    }
+  }, function(e, result) {
     console.log(result)
   }
 )

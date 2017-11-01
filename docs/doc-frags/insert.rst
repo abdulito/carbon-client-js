@@ -2,11 +2,12 @@
 insert
 ******
 
-Inserts a new object into a collection.
+Inserts list of new objects into a collection.
 
 Supported calling forms for ``Collection.insert()`` are as follows:
 
--  ``insert(obj, cb)``
+-  ``insert(objects, cb)``
+-  ``insert(objects, options, cb)``
 
 .. literalinclude:: code-frags/insert.js
     :language: javascript
