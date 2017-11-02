@@ -1,6 +1,6 @@
 {
   "name": "@carbon-io/carbon-client",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "carbon client",
   "contributors": [
     "Will Shulman <will@objectlabs.com>",
@@ -15,19 +15,19 @@
     "lib": "./lib"
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=6.0.0"
   },
   "devDependencies": {
-    "@carbon-io/atom": "0.7.x",
-    "@carbon-io/bond": "0.6.x",
-    "@carbon-io/fibers": "0.7.x",
-    "@carbon-io/test-tube": "0.6.x",
-    "@carbon-io/carbond": "https://github.com/carbon-io/carbond/archive/collection-overhaul.tar.gz"
+    "@carbon-io/atom": "0.8.x",
+    "@carbon-io/bond": "0.7.x",
+    "@carbon-io/fibers": "0.8.x",
+    "@carbon-io/test-tube": "0.7.x",
+    "@carbon-io/carbond": "0.7.x"
   },
   "dependencies": {
     "request": ">= 0.4.12",
-    "@carbon-io/ejson": "0.5.x",
-    "@carbon-io/http-errors": "0.1.x",
+    "@carbon-io/ejson": "0.6.x",
+    "@carbon-io/http-errors": "0.2.x",
     "lodash": "4.16.x"
   },
   "scripts": {
