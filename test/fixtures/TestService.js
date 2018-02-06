@@ -117,7 +117,7 @@ module.exports = o({
     // users collection
     users: o({
       _type: carbond.mongodb.MongoDBCollection,
-      collection: 'users',
+      collectionName: 'users',
       enabled: {
         '*': true
       },
@@ -132,11 +132,15 @@ module.exports = o({
         },
         additionalProperties: true,
         required: ['_id', 'username']
+      },
+
+      saveObjectConfig: {
+        supportsUpsert: true
       }
     }),
     userlite: o({
       _type: carbond.mongodb.MongoDBCollection,
-      collection: 'users',
+      collectionName: 'users',
       enabled: {
         '*': true
       },
@@ -157,7 +161,7 @@ module.exports = o({
 
     items: o({
       _type: carbond.mongodb.MongoDBCollection,
-      collection: 'items',
+      collectionName: 'items',
       enabled: {
         '*': true
       },
@@ -178,7 +182,7 @@ module.exports = o({
 
     "items-large": o({
       _type: carbond.mongodb.MongoDBCollection,
-      collection: 'items',
+      collectionName: 'items',
       enabled: {
         '*': true
       },
